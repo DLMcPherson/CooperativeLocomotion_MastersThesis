@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: MasterDraftV2.aux
 The style file: plain.bst
 Database file #1: manipulation.bib
-You've used 21 entries,
+You've used 26 entries,
             2118 wiz_defined-function locations,
-            635 strings with 8694 characters,
-and the built_in function-call counts, 9720 in all, are:
-= -- 1010
-> -- 422
+            666 strings with 9415 characters,
+and the built_in function-call counts, 11210 in all, are:
+= -- 1159
+> -- 486
 < -- 15
-+ -- 168
-- -- 144
-* -- 672
-:= -- 1459
-add.period$ -- 74
-call.type$ -- 21
-change.case$ -- 135
++ -- 193
+- -- 164
+* -- 779
+:= -- 1709
+add.period$ -- 89
+call.type$ -- 26
+change.case$ -- 159
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 396
-empty$ -- 755
-format.name$ -- 144
-if$ -- 2155
+cite$ -- 26
+duplicate$ -- 448
+empty$ -- 879
+format.name$ -- 164
+if$ -- 2462
 int.to.chr$ -- 0
-int.to.str$ -- 21
-missing$ -- 21
-newline$ -- 108
-num.names$ -- 42
-pop$ -- 156
+int.to.str$ -- 26
+missing$ -- 26
+newline$ -- 133
+num.names$ -- 52
+pop$ -- 182
 preamble$ -- 1
-purify$ -- 114
+purify$ -- 134
 quote$ -- 0
-skip$ -- 319
+skip$ -- 356
 stack$ -- 0
-substring$ -- 725
-swap$ -- 163
+substring$ -- 822
+swap$ -- 168
 text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 84
+type$ -- 102
 warning$ -- 0
-while$ -- 91
-width$ -- 23
-write$ -- 246
+while$ -- 107
+width$ -- 28
+write$ -- 300

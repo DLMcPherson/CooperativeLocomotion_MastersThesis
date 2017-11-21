@@ -1,8 +1,8 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  13 NOV 2017 11:56
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  21 NOV 2017 09:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**MasterDraftV2git status
+**MasterDraftV2
 (./MasterDraftV2.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
@@ -1826,34 +1826,53 @@ Package: physics
 . Defining command \homework with sig. '' on line 764.
 .................................................
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/lipsum/lipsum.sty
-Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count172
+(/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen214
+\captionmargin@=\dimen215
+\captionwidth=\dimen216
+\caption@tempdima=\dimen217
+\caption@indent=\dimen218
+\caption@parindent=\dimen219
+\caption@hangindent=\dimen220
 )
-(./MasterDraftV2.aux)
+\c@ContinuedFloat=\count172
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count173
+\c@subtable=\count174
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (./MasterDraftV2.aux)
 \openout1 = `MasterDraftV2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 40.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 40.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/tipa/t3cmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 43.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 43.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    ... okay on input line 43.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1862,16 +1881,16 @@ LaTeX Font Info:    ... okay on input line 40.
 * paper: letterpaper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: landscape 
-* h-part:(L,W,R)=(108.405pt, 578.15999pt, 108.405pt)
-* v-part:(T,H,B)=(108.405pt, 397.485pt, 108.405pt)
-* \paperwidth=794.96999pt
-* \paperheight=614.295pt
-* \textwidth=578.15999pt
-* \textheight=397.485pt
-* \oddsidemargin=36.13501pt
-* \evensidemargin=36.13501pt
-* \topmargin=-0.86499pt
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -1893,30 +1912,32 @@ LaTeX Font Info:    ... okay on input line 40.
 *** XeTeX expects the source to be in UTF8 encoding
 *** some features of other encodings may conflict, resulting in poor output.
 ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 42.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 45.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 42.
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 45.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 42.
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 45.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 42.
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 45.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 42.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 45.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1zplm.fd
@@ -1924,52 +1945,120 @@ File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 ) [1
 
 ]
-File: KinFlipStrip3.png Graphic file (type QTm)
+File: QSFlipStrip3.png Graphic file (type QTm)
 
-<use  "KinFlipStrip3.png" > [1]
+<use  "QSFlipStrip3.png" > [1]
+File: AndersonAntBridgeL.png Graphic file (type QTm)
+ <use  "AndersonAntBridgeL.png" >
+File: AndersonAntBridgeM.png Graphic file (type QTm)
 
-LaTeX Warning: Citation `MasonMORMBook' on page 1 undefined on input line 86.
-
-
-LaTeX Warning: Citation `MasonMORMBook' on page 1 undefined on input line 86.
-
+<use  "AndersonAntBridgeM.png" >
+File: SawflyLarvaeClimb.png Graphic file (type QTm)
+ <use  "SawflyLarvaeClimb.png" > [1]
 File: Kinematic_CoopCartoon.png Graphic file (type QTm)
-<use  "Kinematic_CoopCartoon.png" > [1]
+
+<use  "Kinematic_CoopCartoon.png" >
 File: QuasiStatic_CoopCartoon.png Graphic file (type QTm)
  <use  "QuasiStatic_CoopCartoon.png" >
 File: Dynamic_CoopCartoon.png Graphic file (type QTm)
 
 <use  "Dynamic_CoopCartoon.png" > [2] [3] [4]
+Chapter 1.
+File: ShellRoACH.jpg Graphic file (type QTm)
+<use  "ShellRoACH.jpg" > [5
+
+] [6]
+File: Mold.png Graphic file (type QTm)
+ <use  "Mold.png" >
 File: SupportingSkeleton.jpg Graphic file (type QTm)
- <use  "SupportingSkeleton.jpg" >
-[5]
+
+<use  "SupportingSkeleton.jpg" >
+File: FinishedMold.jpg Graphic file (type QTm)
+ <use  "FinishedMold.jpg" > [7] [8]
+Chapter 2.
+File: Kinematic_CoopCartoon.png Graphic file (type QTm)
+<use  "Kinematic_CoopCartoon.png" > [9
+
+]
+Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
+File: ShapeForContact_hinge2.eps Graphic file (type eps)
+ <ShapeForContact_hinge2.eps>
+Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
+File: ShapeForContact_jaw.eps Graphic file (type eps)
+
+<ShapeForContact_jaw.eps>
+Overfull \hbox (1.8522pt too wide) in paragraph at lines 363--373
+[][] [] 
+ []
+
+[10] [11]
 File: Kin_FreeBodyDiagram.png Graphic file (type QTm)
- <use  "Kin_FreeBodyDiagram.png" > [6] [7] [8]
-Invalid UTF-8 byte or sequence at line 362 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 362 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 362 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 362 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 362 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 362 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 362 replaced by U+FFFD.
+ <use  "Kin_FreeBodyDiagram.png" > [12]
+File: KinPanel0.jpg Graphic file (type QTm)
+ <use  "KinPanel0.jpg" >
+File: KinPanel1.jpg Graphic file (type QTm)
+
+<use  "KinPanel1.jpg" >
+File: KinPanel2.jpg Graphic file (type QTm)
+ <use  "KinPanel2.jpg" >
+File: KinPanel3.jpg Graphic file (type QTm)
+ <use  "KinPanel3.jpg" >
+File: KinPanel5.jpg Graphic file (type QTm)
+
+<use  "KinPanel5.jpg" >
+File: KinPanel6.jpg Graphic file (type QTm)
+ <use  "KinPanel6.jpg" >
+File: JammedTelemetry.eps Graphic file (type eps)
+ <JammedTelemetry.eps> [13]
+[14]
+File: KinPushForces2.eps Graphic file (type eps)
+ <KinPushForces2.eps> [15]
+Chapter 3.
+File: QuasiStatic_CoopCartoon.png Graphic file (type QTm)
+<use  "QuasiStatic_CoopCartoon.png" >
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
 File: QS_EnergyAnalysis.eps Graphic file (type eps)
  <QS_EnergyAnalysis.eps>
-[9]
 File: EnergyLandscape.eps Graphic file (type eps)
- <EnergyLandscape.eps> [10]
-File: dEnergyLandscape.eps Graphic file (type eps)
- <dEnergyLandscape.eps>
-Invalid UTF-8 byte or sequence at line 421 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 421 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 421 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 421 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 421 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 421 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 421 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 421 replaced by U+FFFD.
-File: QS_FreeBodyDiagram2.eps Graphic file (type eps)
 
-<QS_FreeBodyDiagram2.eps> [11] [12] [13]
+<EnergyLandscape.eps>
+File: dEnergyLandscape.eps Graphic file (type eps)
+ <dEnergyLandscape.eps> [16
+
+]
+Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
+File: QS_FreeBodyDiagram2.eps Graphic file (type eps)
+ <QS_FreeBodyDiagram2.eps>
+[17] [18]
+File: QSFlipStrip3.png Graphic file (type QTm)
+ <use  "QSFlipStrip3.png" >
 File: CircleIcon.png Graphic file (type QTm)
  <use  "CircleIcon.png" >
 File: EllipseIcon.png Graphic file (type QTm)
@@ -1990,21 +2079,32 @@ File: CircleIcon.png Graphic file (type QTm)
 
 <use  "CircleIcon.png" >
 File: BareCircleIcon.png Graphic file (type QTm)
- <use  "BareCircleIcon.png" > [14] [15]
-(./MasterDraftV2.bbl [16] [17
+ <use  "BareCircleIcon.png" > [19] [20] [21]
+Chapter 4.
+File: Dynamic_CoopCartoon.png Graphic file (type QTm)
+<use  "Dynamic_CoopCartoon.png" > [22
 
-]) [18] (./MasterDraftV2.aux)
+]
+Chapter 5.
+(./MasterDraftV2.bbl [23
 
-LaTeX Warning: There were undefined references.
+] [24
 
- ) 
+]
+LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 128
+.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/euenc/eu1lmtt.fd
+File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)) [25]
+(./MasterDraftV2.aux) ) 
 Here is how much of TeX's memory you used:
- 26056 strings out of 493706
- 534139 string characters out of 6145769
- 659839 words of memory out of 5000000
- 29008 multiletter control sequences out of 15000+600000
- 19000 words of font info for 84 fonts, out of 8000000 for 9000
+ 27136 strings out of 493706
+ 554618 string characters out of 6145769
+ 585361 words of memory out of 5000000
+ 30058 multiletter control sequences out of 15000+600000
+ 19032 words of font info for 88 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 62i,16n,58p,10390b,396s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,16n,92p,10380b,565s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on MasterDraftV2.pdf (20 pages).
+Output written on MasterDraftV2.pdf (27 pages).

@@ -3,7 +3,7 @@
 \documentclass[letterpaper]{report}
 
 \usepackage{geometry}
-\geometry{letterpaper, landscape, margin=1.5in}
+\geometry{letterpaper}
 \usepackage{multicol}
 \usepackage{verbatim}
 
@@ -20,14 +20,17 @@
 
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{physics}
 
-\usepackage{lipsum}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
 
-\renewcommand{\thesection}{\arabic{section}}
-\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\usepackage{url}
+
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 \renewcommand{\thesubsubsection}{(\roman{subsubsection})}
 
 \title{Collaborative, Contact-Based Schemas for Robot Righting utilizing Hull Shape Design}
@@ -58,48 +61,65 @@ Within this showcase application we discover several possible designs for cooper
 The strategies follow the traditional manipulation classification framework: kinematic, quasi-static, and dynamic.
 We investigate each method analytically as well as implementing the best method on real robots.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
-\includegraphics[width=1.0\textwidth]{KinFlipStrip3.png}
+\includegraphics[width=1.0\textwidth]{QSFlipStrip3.png}
 %\caption{Frame sequence of RoACH team performing our cooperative righting maneuver on styrofoam}
 \end{figure}
 \end{abstract}
 
-\section{Introduction}
+\section{Introduction to Cooperative Locomotion}
 Humanity's greatest strength is our social prowess; clearly we want to bestow this greatest of all gifts to our silicon offspring.
-Even animals exhibit social behavior that result in some of the most awe-inspring feats in the animal kingdom.
+Even animals exhibit social behavior that result in some of the most awe-inspiring feats in the animal kingdom.
 Dolphins leaping in unison, birds soaring in tight formation, and ants carrying away feasts spark the imagination of children and engineers alike.
-It should come as no suprise, then, that roboticists have striven for decades to imbue robots with that selfsame social spark.
+It should come as no surprise, then, that roboticists have striven for decades to imbue robots with that selfsame social spark.
 And we have succeeded to some extent.
 Decentralized control strategies inspired by flying birds \cite{reynolds1987flocks} produce tight formation controls for our flying robots \cite{RealBoids}.
 This newfound capacity for formation control enabled cooperative manipulation of objects \cite{rus1995moving,sugar2002control,spletzer2001cooperative,song2002potential} just like ants \cite{kube2000cooperative}.
 We take this a step further by having teams manipulate a very special object: another team member.
-With the team's help a robot can gain new ways of moving.
-Our goal moves from cooperative manipulation to cooperative locomotion.
+Inspired by self-assemblages \cite{Anderson2002} and intermediate-level parts \cite{Anderson2001} used by social insects, the team can add news modes of movement and controllable DoF for our robots.
+
+\begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.8\textwidth}
+    \centering
+    \includegraphics[width=.5\linewidth,height=.3\textwidth]{AndersonAntBridgeL.png}%
+    \includegraphics[width=.5\linewidth,height=.3\textwidth]{AndersonAntBridgeM.png}\\
+    \caption{Army ants build bridges to cross gaps \cite{Anderson2002}}
+  \end{subfigure}
+
+  \begin{subfigure}[t]{0.8\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{SawflyLarvaeClimb.png}
+    \caption{Sawfly larvae using aggregations to boost speed and clear obstacles \cite{SEDSawflyCluster}}
+  \end{subfigure}
+\end{figure}
+
+As we focus manipulation on manipulating team members, our goal is to translate work in cooperative manipulation to cooperative locomotion.
 The design freedom granted by specializing manipulation to other teammates allows us to create more rich manipulations than mere translations.
 By leveraging work in dynamic manipulation, we can design mobile robots that can rotate each other out of the plane of movement.
 
 \subsection{Structure of Thesis}
-This Thesis first exposits the rich tradition of research this work builds upon in Section 1.
-We then detail the hardware used in our experiments in Section 2 for the sake of reproducibility.
+This Thesis first exposits the rich tradition of research this work builds upon. This will take the rest of this chapter.
+We then detail the hardware used in our experiments in Chapter 2 for the sake of reproducibility.
 The next three sections each investigate a different schema for cooperative righting.
 We follow the manipulation taxonomy expounded upon in Mason's seminal text ``Mechanics of Robotic Manipulation'' \cite{MasonMORMBook}: Kinematic, Static\footnote{Interestingly, static righting corresponds to passive self-righting by placing the center of gravity above the center of rotation. Static righting is non-cooperative and so doesn't receive a treatment here (static manipulation also did not receive its own chapter in ``Mechanics of Robotic Manipulation'' \cite{MasonMORMBook})}, Quasi-static, Dynamic.
-Section 3 investigates a two robot (coresponding to a ``two-finger'' manipulation) maneuver that rolls a pronated third robot back onto its feet.
-The two robots fully constrain the third robot and closing the distance between the two kinematically moves the third through a full roll re-orientation.
+Chapter 3 investigates a two robot (corresponding to a ``two-finger'' manipulation) maneuver that rolls a pronated third robot back onto its feet.
+The two robots fully constrain the third robot. Closing the distance between the two robot fingers kinematically moves the third through a full roll re-orientation.
 This method is purely kinematic.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=1.0\textwidth]{Kinematic_CoopCartoon.png}
 \caption{Cartoon of ``Kinematic'' Cooperative Flip Technique}
 \end{figure}
 
-Section 4 moves to a single robot locomoting the pronated robot. With the loss of fully constrained control, the cooperative locomotion method must compensate by leveraging previously unmodeled effects.
+Chapter 4 moves to a single robot locomoting the pronated robot. With the loss of fully constrained control, the cooperative locomotion method must compensate by leveraging previously unmodeled effects.
 Previously neglected ground friction forces now become our ally providing the necessary second force to create a moment couple on the pronated robot.
 In this sense the ground could be interpreted as a second finger, but is more proximal to the palm in human dexterous manipulation.
 By introducing frictional forces we leave the domain of kinematic manipulation and enter quasi-static analysis, making this the quasi-static flipping method.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=1.0\textwidth]{QuasiStatic_CoopCartoon.png}
 \caption{Cartoon of ``Quasi-static'' Cooperative Flip Technique}
@@ -107,12 +127,16 @@ By introducing frictional forces we leave the domain of kinematic manipulation a
 
 We will see that this enabling insight will also become the quasi-static flip's major short-coming: sensitivity to ground-shell friction coefficients.
 The final flipping method eschews this constraint by relying on the inertial pseudo-force to couple with a ballistic push from the compatriot robot to create the moment couple.
+This method is discussed in Chapter 5.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=1.0\textwidth]{Dynamic_CoopCartoon.png}
 \caption{Cartoon of ``Dynamic'' Cooperative Flip Technique}
 \end{figure}
+
+Chapter 6 concludes by comparing and contrasting each cooperative righting method.
+We also discuss future directions and indulge in imagining what cooperative locomotion could do after this work.
 
 \section{Related Work}
 
@@ -126,7 +150,7 @@ Team manipulation ports these concepts by simply viewing each robot as a separat
 This idea was spearheaded and popularized by Daniela Rus in her seminal work on furniture moving robots \cite{rus1995moving}.
 The idea was evolved and matured by Vijay Kumar's group to include tactile feedback \cite{sugar2002control}, vision-based formation keeping \cite{spletzer2001cooperative}, and elegant decentralized control methods \cite{song2002potential}.
 However, these works can only achieve manipulation within the plane that the mobile robots drive upon.
-I am interested in adding out of plane rolling capabilty to a mobile team manipulator.
+I am interested in adding out of plane rolling capability to a mobile team manipulator.
 
 \subsection{Cage-Free Manipulation}
 I accomplish this feat by tapping into cage-free manipulation techniques that embrace dynamics and askew forces to create more complex manipulations.
@@ -139,7 +163,7 @@ This structure simplifies the problem by allowing us to co-design both the manip
 To our knowledge, a manipulation-based approach to cooperative locomotion is novel.
 
 The closest comparison are other cooperative locomotion projects such as the cooperative step climbing work by Casarez \cite{casarez2016step} where teammates boost each other via a magnetic hinge connection and pull each other up via a tether.
-Biomimetic approaches such as the TERMES \cite{werfel2014designing} construction team that could collaborataively build bridges, steps, or other locomotive affordances.
+Biomimetic approaches such as the TERMES \cite{werfel2014designing} construction team that could collaboratively build bridges, steps, or other locomotive affordances.
 
 \subsection{Self Righting}
 In this work we focus on the cooperative locomotion example of cooperative righting.
@@ -149,18 +173,28 @@ Similarly, Casarez and Fearing \cite{casarezTailRighting} demonstrate how adding
 Saranli et al. \cite{saranli2004model} use the actuators they already have to roll: by flailing the robot's legs they can induce a roll moment on the body.
 
 \subsubsection{Rightability}
-Turtle \cite{domokos2008geometry}
-Kessens \cite{kessens2012framework,kessens2014metric}
+Other researchers have investigated the innate passive ability of shapes to be righted (i.e. rolled in a plane with gravity as a spanning vector).
+Domokos et. al \cite{domokos2008geometry} studied nature and formulated a geometric model for rightability of turtle shells.
+Kessens et. al \cite{kessens2012framework,kessens2014metric} promoted a generalized framework for analyzing robot righting using a variety of limbs and actuators.
+His framework builds a graph structure on stable configurations with transitions costs weighted by change in potential energy between states.
+This method is effectively a Hamiltonian analysis between discrete states (we will pursue a Hamiltonian analysis of our methods as well, but with a continuum of states instead of discontinuous transitions).
+Unlike Kessens (and more like Domokos) we will doing away with added actuators and instead focusing on minimal righting strategies.
+Unlike both of them we will augment the actuation with outside help from team-mates.
+% TODO: Right about self-righting metrics
 
-\section{Hardware}
+\chapter{Hardware}
 
-\subsection{Robotic Platform}
+\section{Robotic Platform}
 The VelociRoACH is a Robotic Autonomous Crawling Hexapod (RoACH) experimental platform designed for high velocity running through its elegant minimal hardware design \cite{haldaneVelociRoACHDesign}.
 This design makes the VelociRoACH a fertile showcase for dynamic maneuvers; it has broken speed records before \cite{haldane2015running}.
 Due to its low cost and rapid manufacturing process, teams of RoACHes are a pragmatic platform for investigating multi-robot maneuvers \cite{casarez2016step}.
 We will leverage these two boons to demonstrate dynamic, multi-robot maneuvers.
 
-% Picture of VelociRoACH here.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{ShellRoACH.jpg}
+  \caption{\label{fig:ShellRoACH}VelociRoACH equipped with Roll Manipulation Shell}
+\end{figure}
 
 We accomplish our cooperative locomotion through dynamic and dexterous manipulation techniques.
 These techniques rely upon molding the force vectors that are applied throughout by the manipulation contacts.
@@ -194,10 +228,10 @@ Shell-ground contact friction coefficient & $h$ & $0.26$ \\
 \end{tabular}
 \end{table}
 
-\subsection{Shell Construction}
+\section{Shell Construction}
 Shell shapes are the central design problem. Therefore, the design cycle of the shell is of utmost import.
 To expedite the rate of design iterations, I refined the shell manufacture process by removing the primary bottleneck: speeding mold creation from days to hours.
-\subsubsection{Mold Prototyping}
+\subsection{Mold Prototyping}
 \label{sec:Molds}
 Previously, in our lab we used additive manufacturing to print a mold for the shell shape.
 This required multi-day printing sessions to manufacture a piece measuring 10x19x10 centimetres.
@@ -207,12 +241,12 @@ The solution I have pioneered sacrifices design flexibility for prototyping rapi
 
 Our analysis will planarize the three-dimensional problem as we focus on actuating the roll degree of freedom.
 Therefore, we are only interested in the two-dimensional profile of the shell and should eliminate secondary curvature along the depth-axis to prevent unwanted yaw rotations and other confounding effects.
-This deisgn goal implies that all shell designs should be prisms.
+This design goal implies that all shell designs should be prisms.
 A prism's hull can be created with a single continuous sheet folded over the two-dimensional profile which defines the type of prism (e.g. rectangular prism, cylinder, elliptical prism, extruded polygon, etc.).
 Constructing prismatic shells via single-sheet folding replaces the bottleneck of additive-manufacturing.
 
-A contoured single sheet of cardstock will crumple under the vacuum pressure in a vacuum former.
-We must add a supporting skeleton to brace the cardstock.
+A contoured single sheet of poster-board will crumple under the vacuum pressure in a vacuum former.
+We must add a supporting skeleton to brace the poster-board.
 The skeleton must support pressure that points uniformly along the normals of the surface.
 Since it is exerted normally, a mere square honeycomb is insufficient.
 Instead, supporting beams directed along the normal must be used in the style of a Viking longhouse.
@@ -221,19 +255,40 @@ A picture of the supporting skeleton is shown in Fig. \ref{fig:ManufactureSkelet
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.4\textwidth]{SupportingSkeleton.jpg}
-\caption{\label{fig:ManufactureSkeleton}Supporting Skeleton fully Assembled}
+\begin{subfigure}[t]{0.6\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Mold.png}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.35\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{SupportingSkeleton.jpg}
+\end{subfigure}
+\caption{\label{fig:ManufactureSkeleton}To withstand vacuum forming pressures, the prismatic mold is reinforced with a laser cut cardboard skeleton}
 \end{figure}
 
-The cardstock can now be wrapped tightly around the supporting skeleton.
-To enable tight cinching and hands free fixturing, a rectangular jig with a cutout in the shape of the mold footprint is used.
-The skeleton is then held in place whilst the cardstock is slipped between the skeleton and the jig.
-The cardstock is pulled taut (so as to avoid wrinkles forming during the suction event) and glued to the skeleton.
+The poster-board can now be wrapped tightly around the supporting skeleton.
+A rectangular jig cutout to fit the mold's footprint enables tight cinching and hands-free fixturing,
+The skeleton is then held in place whilst the poster-board is slipped between the skeleton and the jig.
+The poster-board is pulled taut (so as to avoid wrinkles forming during the suction event) and glued to the skeleton.
 The completed mold is now ready to be used in the vacuum former to shape plastic shells.
 
-\subsubsection{Standard Magnet Mount}
-Once the plastic shells are formed to the desired prismatic shape, they are mounted to the robot via modular magnetic mounts.
-A cardstock strip is cut to length according to the formula:
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{FinishedMold.jpg}
+\caption{\label{fig:Finished Mold}Rapidly manufactured from flat stock materials into a finished mold ready to produce plastic shells}
+\end{figure}
+
+We vacuum formed 0.015 inch thick polycarbonate to our mold using the Formech Compac Mini Vacuum Former.
+The mold was constructed out of standard corrugated cardboard from recycled shipping packages, measuring between 3 and 4 millimeters in thickness (varying by package).
+
+% TODO: Add section leveraging Reauleaux's method to discuss auto-alignment of prismatic shells (which ellipsoidal shells lack).
+
+\subsection{Standard Magnet Mount}
+Once the plastic shells are formed to the desired prismatic shape, they are mounted to the robot via modular magnetic mounts (this allows swapping shells between experimental conditions).
+The magnetic mount is a strip of poster-board strung across a horizontal secant in the shell with magnets interference fit into the top surface.
+glued to the lower $\pi/6$ radians of the semi-circle
+A poster-board strip is cut to length according to the formula:
 
 $$
 l_{mountstrip} = 2 \sqrt{r^2 - h_m^2} + 2 (\sin^{-1}(h_m/r) r)
@@ -247,12 +302,132 @@ l_{mountstrip} = 2 (\sqrt{3} \frac{r}{2}) + 2 (\frac{\pi}{6} r) = (\sqrt{3} + \f
 $$
 
 We chose $h_m = 25$mm which mandated that $l_{mountstrip} = 139$ mm.
-The strip was then affixed to the shell via permanent adhesive. The adhesive used was LOCTITE495 Instant Adhesive.
+A second layer of poster-board measuring $\sqrt{r^2-h^2}$ is added to reinforce the unsupported horizontal secant.
+This reinforcement layer also has two 9.5 mm diameter holes cut 24 mm from the centerline (center to center) to house the 3/8" diameter N52 grade magnets (1/32" deep).
 
-\section{Kinematic Flip Method}
+The strip was then affixed to the shell via permanent adhesive. The adhesive used was LOCTITE495 Instant Adhesive.
+See Fig. \ref{fig:ShellRoACH} for picture of mounted shell.
+
+\chapter{Kinematic Flip Method}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1.0\textwidth]{Kinematic_CoopCartoon.png}
+\end{figure}
+
+The first cooperative righting method considered begins at the lowest rung on manipulation taxonomy espoused in \cite{MasonMORMBook}: kinematic manipulation.
+This is the natural place to begin our translation from cooperative manipulation to cooperative locomotion since kinematic methods are the most prevalent and applied manipulation technique.
+Form closure and its derivative force closure guarantee a grasp upon an object.
+With object position fully determined by the manipulator, manipulation reduces to the Piano Movers' Problem in position-space for form closure or in expanded state spaces to match the dependencies of the force for force closure.
+
+We use two compatriot robots to right the pronated team-mate which allows full force closure using gravity.
+Accordingly the pronated robot's pose is dictated entirely by problem geometry and evolves kinematically (independent of inertia and frictional forces).
+Yet even in this simplified analysis we must still carefully design the robots' shape. Without this consideration our cooperative manipulator can only manipulate in the same degrees of freedom as the manipulators (the robot ``fingers'') can move in.
+%Yet even in this simplified domain, we must still carefully carve the curves of our carriers' carcasses to caress the crabbed creation.
+We draw inspiration from Zhang and Goldberg \cite{zhang2002gripper} which used a set of point contacts to rotate the manipulatee out of the plane of manipulator movement (in this case 1DOF parallel-jaw grippers).
+Drawing on work by Rodriguez et. al \cite{rodriguez2013effector} we move from a set of point contacts to designing contact surfaces.
+
+\section{Surface Design}
+Inspired by parallel-jaw grippers, the action of flipping will be caused by closing the distance between two compatriot robots.
+We treat one contact as a hinge joint between the compatriot and the manipulatee.
+The hinge assumption holds approximately in experiments due to friction aided by a lip that catches the edge of the pronated robot and prevents sliding upwards.
+
+The compatriot robots can either be parallel to the pronated manipulatee or perpendicular, resulting in two unique profiles in the planar manipulation problem.
+When perpendicular, the prism's flat front face pushes the manipulatee. This is the face we attach that acts as a hinge (courtesy of friction and an added lip).
+When parallel, the prism's long extruded profile meshes the matching profile of the pronated robot. This is the shape we get to design.
+
+\subsection{Relative Movement}
+The closing motion of our jaw-gripper-like robots is actually due only to the motion of the perpendicular robot, as our non-holonomic robots are constrained to Dubins-car-esque movements.
+To simplify analysis, however, motions are generally described as the curved profile (parallel robot) moving and the hinge (perpendicular robot) remaining fixed.
+Since we eschew inertial analyses in Kinematic manipulations, these reference frame simplifications present no issues.
+
+\subsection{Shape for Contact Problem Formulation \cite{rodriguez2013effector}}
+We will formulate the design problem as a shape for contact problem as advanced by Rodriguez et al\cite{rodriguez2013effector} using his three main concepts:
+\begin{itemize}
+  \item \textit{Motion} $\mathcal{M}(z,u)$ and \textit{Motion Orbits} that define the movement of the effector
+  \item \textit{Effector} $E(s,u)$ with \textit{shape} $E(s,0)$
+  \item \textit{Contact Constraints} $(p,\omega)$ and its decomposition into \textit{Shape Constraints} $((p,u),\omega)$
+\end{itemize}
+In our formulation, however, we are simultaneously designing the effector and the effected object each with their own \textit{motion} creating, in effect, two coupled shape-for-contact problems.
+The pronated robot hinges about the perpendicular compatriot robot's lip, resulting in the \textit{motion field} $\mathcal{M}(z,u)$:
+
+\begin{align}
+\mathcal{M}_{rot}(z,u) = \begin{bmatrix} -z_2 \\ z_1 \end{bmatrix} \frac{d\theta(u)}{du}
+\end{align}
+
+where $u$ parametrizes the motion\footnote{$u$ can be thought as an analogue to the time index. But since dynamics are neglected we are actually free to choose our parameter $u$ to be some other, more relevant variable that is one-to-one with time, such as closed distance between the ``parallel jaws'' $x$ or righting angle $\theta$}
+ and $z$ is the position with origin placed at the hinge as shown in \ref{fig:rotMot}
+The \textit{motion orbits}\footnote{\textit{motion orbits} are a central concept in Rodriguez' formulation \cite{rodriguez2013effector}. Mathematically, they are the integral curves of the \textit{motion} $\mathcal{M}(z,u)$. Physically, they represent the path a point on the designed shape follows throughout the motion. Solutions are obtained by propagating constraints backwards along orbit lines. \textit{Motions} $\mathcal{M}$ can be $u$-varying and nonlinear, in general, and oft-times create more rich \textit{motion orbits} than the simplifed ones seen here.}
+ of the hinging motion, which are the concentric circles around the hinge.
+
+\begin{figure}[ht]
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth,trim={10cm 5cm 0 5cm},clip]{ShapeForContact_hinge2.eps}
+    \caption{\label{fig:rotMot}Motion Orbits of Pronated Copy of Shell under Hinge Effector}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{ShapeForContact_jaw.eps}
+    \caption{\label{fig:transMot}Motion Orbits of Parallel Compatriot Copy of Shell under Jaw Effector}
+  \end{subfigure}
+\end{figure}
+
+The coupled problem investigates the relative motion of the parallel compatriot robot: a closing gap, mimicking parallel jaw grippers, that pushes the prone robot up and over.
+Therefore, the compatriot robot translates purely sideways with \textit{motion field}:
+
+\begin{align}
+\mathcal{M}_{trans}(z,u) = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \frac{dx(u)}{du}
+\end{align}
+
+and corresponding \textit{motion orbits}, shown in Fig. \ref{fig:transMot}, being the horizontal lines.
+Note that this motion has a separate coordinate frame for measuring movement.
+Points can be transformed between the two coordinate frames via the affine transformation:
+
+\begin{align}
+ z_{rot}=-z_{trans}+\begin{bmatrix}w \\ h\end{bmatrix}
+\end{align}
+
+where $w$ is the starting distance between the two compatriot robots and $h$ is the height of the hinge.
+
+Note that $\frac{d\theta(u)}{du}$ and later $\frac{dx(u)}{du}$ (referenced in the motion orbits) are design inputs chosen at the discretion of the designer.
+One of the mappings between position states and motion parameter will be decided by defining the motion parameter $u$, while the other can be designed to create a (in some sense) optimal motion.
+For example, we could define $u=\theta$ and choose $x(u)$ to minimize peak power consumption by letting $x(u) = w + T \sin(u)$.
+
+We will use these \textit{motion orbits} to propagate back contact points to build out the tangent planes of our designed surface $E(s,u)\rvert_{u=0}$ (where $s$ parametrizes the curve).
+Rodriguez' Shape for Contact Problem is formalized by defining the desired contact points through contact constraints $\exists u_0 \ni E(s_0,u_0) = p \and \frac{\partial E}{\partial s}(s_0,t_0) = \omega$ and shape constraints $E(s_0,u_0) = p \and \frac{\partial E}{\partial s}(s_0,u_0) = \omega$.
+Our coupled problem is designing a singular $E(s,0) = C(s)$ from two sets of contact constraints.
+Since the same shape $E(s,0)$ will be propagated through two different motion fields, we notate which motion field the shape is isometrically transformed by using a subscript.
+\begin{itemize}
+  \item $E_{rot}(s,u)$ denotes the copy of the designed curve that is rotated about the hinge. It is the copy of the shell worn by the pronated robot.
+  \item$E_{trans}(s,u)$ denotes the copy of the designed curve that is translated towards the hinge, closing the jaw and pushing the manipulation forward. It is the copy of the shell worn by the parallel ``jaw'' robot.
+  \item The two are coupled via the constraint $E_{rot}(s,0) = E_{trans}(s,0) = C(s) \hspace{5mm} \forall s$
+\end{itemize}
+
+Our contact constraints arise from our need for the prone robot be supported at every angle $\theta \in [0,\pi/2]$\footnote{after $\pi/2$ the prone robot's center of gravity is over the support point at the hinge, so gravity will finish the rotation work as the robot falls feet first towards the ground.}.
+Supporting the prone robot means that there exists a contact point with matching tangents between the rotating copy of the curve and the translating copy of the curve.
+Therefore, (translating between the two reference frames) the shape constraints must match:
+
+\begin{align}
+  E_{rot}(s_{0r},u) = -E_{trans}(s_{0t},u) +\begin{bmatrix}w \\ h\end{bmatrix} \\
+  \frac{\partial E_{rot}}{\partial s}(s_{0r},u) = - \frac{\partial E_{trans}}{\partial s}(s_{0t},u)
+  \label{eq:ShapeConstraintsE}
+\end{align}
+
+for some $s_{0r},s_{0t}$ for all $u \ni (\theta(u) \in [0,\pi/2])$.
+By transforming the cloned curve $C(s)$ according to the motion orbits, we can substituting the coupling constraint $E_{rot}(s,0) = E_{trans}(s,0) = C(s)$ into \ref{eq:ShapeConstraintsE} to find:
+
+\begin{align}
+  R(\theta(u) ) C(s_{0r}) = - \left(C(s_{0t})+\begin{bmatrix}x(u) \\ 0\end{bmatrix} \right) +\begin{bmatrix}w \\ h\end{bmatrix} \label{eq:ShapeConstraints1} \\
+  R(\theta(u) ) \frac{d C}{d s}(s_{0r},u) = - \frac{d C}{d s}(s_{0t})
+  \label{eq:ShapeConstraints2}
+\end{align}
+where $R(\theta) = \begin{bmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{bmatrix}$ is the rotation matrix through angle $\theta$.
+
+Therefore, our task is to come up with three functions $C(s), s_{0r}(u), s_{0t}(u)$ that will satisfy the Eqs. \ref{eq:ShapeConstraints1} and \ref{eq:ShapeConstraints2}.
+Rather than solve this problem for a choice of $x(u), \theta(u)$, we instead posit a solution to the problem and find the $x(u),\theta(u)$ it satisfies.
 
 \begin{comment}
-\subsection{Design Evolution}
+\section{Design Evolution}
 The design started by exclusively examining the design of the pushing robot's contact surface, oblivious of the design choices inherent in the shape of the robot we were pushing (which was the ellipsoidal shape already extant in our lab from \cite{ChenTerradynamic}) and choice of backstop to push against (which we assumed was a suitable, external, environment fixture).
 We started by shaping the plow as the inverse of the turtled robots' ellipsoidal shape.
 This curved front plow resembled a snow shovel.
@@ -266,26 +441,82 @@ Upon this realization I made the backstop the cylindrical surface and made the w
 This streamlined the number of specialized manipulation surfaces needed.
 \end{comment}
 
-\subsection{Kinematic Analysis}
+\section{Kinematic Analysis of Semi-Circular Prismatic Shells}
 This flipping method is termed the ``Kinematic Flip'' since the flipping action is due purely to contact constraints that geometrically force the pronated robot through a series of poses up to the tipping point.
+We posit a solution to Eqs. \ref{eq:ShapeConstraints1} and \ref{eq:ShapeConstraints2} of $C(s) = r$ being a semi-circle, and will kinematically find the $s_{0r}, s_{0t}$ that make the semi-circle a solution.
+Consider the geometry of the freebody diagram in \ref{fig:KinFreebody} for a given $x(u)$ and $\theta(u)$.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.5\textwidth]{Kin_FreeBodyDiagram.png}
-\caption{\label{fig:Freebody}Freebody Diagram for Kinematic-Flip Force Analysis}
+\includegraphics[width=0.8\textwidth]{Kin_FreeBodyDiagram.png}
+\caption{\label{fig:KinFreebody}Freebody Diagram for Kinematic-Flip Force Analysis}
 \end{figure}
 
-As the distance $x$ between the hinge-pusher and the deflector-pusher decreases the angle of the prone robot increases as dictated by the law of cosines:
+We find the kinematic angles that govern this system using the law of cosines and the definition of the tangent function:
 
 \begin{align}
-  4 r^2 = r^2 + (h^2 + x^2) - 2r \sqrt{h^2 + x^2} cos(\theta + \phi) \\
+  r^2 = 4 r^2 + (h^2 + x^2) - 4r \sqrt{h^2 + x^2} cos(\alpha) \\
+  \rightarrow \alpha = \cos^{-1} \left( \frac{3r^2 + h^2 + x^2}{2r \sqrt{h^2 + x^2}} \right)
+\end{align}
+
+\begin{align}
+  \phi = \tan^{-1}(h/x)
+\end{align}
+
+\begin{align}
+  4 r^2 = r^2 + (h^2 + x^2) - 2r \sqrt{h^2 + x^2} \cos(\theta + \phi) \\
   \rightarrow \theta = \cos^{-1} \left( \frac{-3r^2 + h^2 + x^2}{2r \sqrt{h^2 + x^2}} \right) - \phi \label{eq:KinTheta}
 \end{align}
 
-where $\phi$ is merely $\phi = \tan^{-1}(h/x)$.
+Note that Eq. \ref{eq:KinTheta} creates a strict relation between $x(u)$ and $\theta(u)$.
+By defining the motion parameter $u$ in terms of one, we can find the other.
+Here we'll choose $x(u) = u$ so that Eq. \ref{eq:KinTheta} already expresses $\theta(u) = \theta(x)$.
 
-\subsection{Force Analysis}
-A quasi-static force balance yields the requisite push force to move the prone robot through these poses:
+With all angles kinematically defined, we pick off the contact angles $s_{0r}, s_{0t}$ as:
+
+\begin{align}
+  s_{0r}(u) = s_{0r}(x) = \alpha + \theta + \phi = \cos^{-1} \left( \frac{3r^2 + h^2 + x^2}{2r \sqrt{h^2 + x^2}} \right) + \cos^{-1} \left( \frac{-3r^2 + h^2 + x^2}{2r \sqrt{h^2 + x^2}} \right)
+\end{align}
+
+and
+
+\begin{align}
+  s_{0t}(u) = s_{0t}(x) = \alpha + \phi = \cos^{-1} \left( \frac{3r^2 + h^2 + x^2}{2r \sqrt{h^2 + x^2}} \right) + \tan^{-1}(h/x)
+\end{align}
+
+We have found a solution to the Shape for Contact problem by satisfying the constraints in Eqs. \ref{eq:ShapeConstraints1} and \ref{eq:ShapeConstraints2}: at every position $u = x$ there is a contact plane between the parallel jaw and the pronated robot.
+As $x$ increases the flip angle $\theta$ also increases according to \ref{eq:KinTheta}, until the critical angle $\theta = \pi/2$ when the center of gravity crosses over the support point at the hinge.
+At this critical angle the two bodies become decoupled as the prone robot breaks contact with the pusher and clatters to the ground on its feet.
+
+\section{Experimental Results}
+
+This semi-circular shell design was found to be kinematically successful as can be seen in Fig. \ref{fig:KinematicFlipRealLife}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.16\textwidth]{KinPanel0.jpg}
+  \includegraphics[width=0.16\textwidth]{KinPanel1.jpg}
+  \includegraphics[width=0.16\textwidth]{KinPanel2.jpg}
+  \includegraphics[width=0.16\textwidth]{KinPanel3.jpg}
+  \includegraphics[width=0.16\textwidth]{KinPanel5.jpg}
+  \includegraphics[width=0.16\textwidth]{KinPanel6.jpg}
+  \caption{\label{fig:KinematicFlipRealLife}Kinematic Progression of Cooperative Righting}
+\end{figure}
+
+Each configuration of the two compatriot robots exerts force closure on the pronated robot, and the sequence of configurations moves the pronated robot from prone to upright.
+Unfortunately, when these kinematic frames are chained over time, unmodeled dynamics come into play.
+When \textit{push comes to shove} the pushing robot cannot exert sufficient force to progress through the kinematic frames.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{JammedTelemetry.eps}
+  \caption{\label{fig:JammedKinFlipTelemetry}Telemetry of Jammed Pushing Compatriot Robot}
+\end{figure}
+
+We will analyze this failure using quasi-static analysis in the next section.
+
+\section{Force Analysis}
+From the free-body diagram in Fig. \ref{fig:KinFreebody} quasi-static force equilibrium equations are:
 
 \begin{align}
   P + F \sin(\alpha + \phi) - N \cos(\alpha + \phi) = 0
@@ -298,11 +529,11 @@ A quasi-static force balance yields the requisite push force to move the prone r
 \end{align}
 
 \begin{align}
-  F r \sin(\alpha + \phi) - N r \cos(\alpha + \phi) = mg r \cos(\theta)
+  F r \sin(\theta + \phi + \alpha) - N r \cos(\theta + \phi + \alpha) = mg r \cos(\theta)
   \label{eq:KinTorque}
 \end{align}
 
-We also assume that the two shells roll without slipping along each other's circular surface, resulting in:
+We also assume that the two shells are sliding:
 
 \begin{align}
   F = \mu N
@@ -311,14 +542,8 @@ We also assume that the two shells roll without slipping along each other's circ
 
 where $\mu$ denotes here the coefficient of friction between the two shells.
 
-Since $\alpha$ is an unknown, we will solve for it using the law of cosines (similarly to Eq. \ref{eq:KinTheta}):
-
-\begin{align}
-  r^2 = 4 r^2 + (h^2 + x^2) - 4r \sqrt{h^2 + x^2} cos(\alpha) \\
-  \rightarrow \alpha = \cos^{-1} \left( \frac{3r^2 + h^2 + x^2}{2r \sqrt{h^2 + x^2}} \right)
-\end{align}
-
-For the sake of notational brevity instead of writing out trigonometric expressions let the following denote:
+\begin{comment}
+For the sake of notational brevity, we compact the trigonometric expressions to the following:
 
 \begin{align}
   a &= \cos(\theta + \phi) \\
@@ -335,7 +560,7 @@ Substituting Eq. \ref{eq:KinFriction} into Eq. \ref{eq:KinTorque} and solving fo
 N = \frac{c m g}{\mu (1+ac-bd) + (bc+ad)}
 \end{align}
 
-Further substituting this expression into Eqs. \ref{eq:KinQSX} and \ref{eq:KinQSY} results in:
+Further substituting this expression into Eqs. \ref{eq:KinQSX} and \ref{eq:KinQSY} results in expressions for the push forces needed from the perpendicular hinge compatriot:
 
 \begin{align}
 P = ( (ce-df) - (cf+de)\mu ) \frac{c m g}{\mu (1+ac-bd) + (bc+ad)}
@@ -344,14 +569,47 @@ and
 \begin{align}
 L = ( (cf+de) - (ce-df)\mu )\frac{c m g}{\mu (1+ac-bd) + (bc+ad)}
 \end{align}
+\end{comment}
 
-\section{Quasistatic Flip Method}
+Substituting Eq. \ref{eq:KinFriction} into Eq. \ref{eq:KinTorque} and solving for the normal force along the shell contact yields:
 
-\subsection{Analysis}
+\begin{align}
+N = \frac{\cos(\theta) m g}{\mu (1+\cos(\theta + \phi + \alpha)) + \sin(\theta + \phi + \alpha)}
+\end{align}
+
+Further substituting this expression into Eqs. \ref{eq:KinQSX} and \ref{eq:KinQSY} results in expressions for the push forces needed from the perpendicular hinge compatriot:
+
+\begin{align}
+P = ( \cos(\alpha+\phi) + \mu \sin(\alpha+\phi) ) \frac{\cos(\theta) m g}{-\mu (1+\cos(\theta + \phi + \alpha)) + \sin(\theta + \phi + \alpha)}
+\end{align}
+and
+\begin{align}
+L = ( -\sin(\alpha+\phi) + \mu \cos(\alpha+\phi) ) \frac{\cos(\theta) m g}{-\mu (1+\cos(\theta + \phi + \alpha)) + \sin(\theta + \phi + \alpha)} + mg
+\end{align}
+
+These forces are plotted as a function of distance in Fig. \ref{fig:KinForces}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{KinPushForces2.eps}
+\caption{\label{fig:KinForces}Push Forces for Kinematic Flip (measured as multiples of robot weight)}
+\end{figure}
+
+Note that when the push begins at $x=10 cm$, the required coefficient of friction between ground and robot is higher than the actual foot-ground coefficient range of $0.5$ to $0.7$.
+%TO DO: The push doesn't begin at 10 cm. It begins at 14.9 cm as dictated by w=r+sqrt(4r^2 - h) where h = 3cm (measured).
+
+\chapter{Quasistatic Flip Method}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1.0\textwidth]{QuasiStatic_CoopCartoon.png}
+\end{figure}
+
+\section{Analysis}
 The VelociRoACH platform is optimized for speed and robustness, not torque and stability (which would be what we need for stable pushing).
 Accordingly our shell design for this platform must aim to minimize the requisite maximum power transfer necessary (throughout the maneuver).
 
-\subsubsection{Energy Landscape}
+\subsection{Energy Landscape}
 This can be analyzed by the change in potential energy as the prone robot undergoes rotation.
 To this end, let us find the gravitational potential energy of a tilted robot at each angular configuration.
 We narrow our focus of shell shape design to the class of 3D shapes with elliptical cross sections in the plane of rotation.
@@ -381,10 +639,19 @@ where $c$ is the minor-axis intercept of the unique tangent line to the semi-ell
   c(\theta) \doteq \sqrt{a^2 \tan^2(\theta) + b^2}
 \end{align}
 
-\begin{figure}
-\centering
-\includegraphics[width=0.5\textwidth]{EnergyLandscape.eps}
-\caption{\label{fig:QSEnergy}Energy Landscape over Prone Robot's Angle as described in Eq. \ref{eq:QSEnergy}}
+\begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \includegraphics[width=1.0\textwidth]{EnergyLandscape.eps}
+    \caption{\label{fig:QSEnergy}Energy Landscape over Prone Robot's Angle as described in Eq. \ref{eq:QSEnergy}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \includegraphics[width=1.0\textwidth]{dEnergyLandscape.eps}
+    \caption{\label{fig:QSdEnergy}Energy Differential plotted against Angle as described in Eq. \ref{eq:QSdEnergy}}
+  \end{subfigure}
 \end{figure}
 
 So that the change in energy required for progression along rotation $\theta$ is:
@@ -401,19 +668,13 @@ So that the change in energy required for progression along rotation $\theta$ is
 This energy differential over position describes how much work must be performed, or how much force is required.
 It is plotted in Fig. \ref{fig:QSdEnergy}
 
-\begin{figure}
-\centering
-\includegraphics[width=0.5\textwidth]{dEnergyLandscape.eps}
-\caption{\label{fig:QSdEnergy}Energy Differential plotted against Angle as described in Eq. \ref{eq:QSdEnergy}}
-\end{figure}
-
-Note that the maximum force for pushing a circle in non-decreasing and is maximum at $\theta = \pi/2$ (this will be confirmed again in the below force analysis).
+Note that the maximum force for pushing a circle is non-decreasing and is maximum at $\theta = \pi/2$ (this will be confirmed again in the below force analysis).
 In contrast, the maximum force for pushing an ellipse is much larger and occurs in the middle of the pushing maneuver.
 We will see this larger energy requisite manifest as significantly slower pushing maneuvers when operating on ellipses.
 
-\subsubsection{Quasi-static Force Analysis Assumptions}
-I have found that the main breaking points for successful quasistatic flipping maneuvers are having the requisite pushing force capacity and sufficient traction between the prone robot's shell and the ground.
-To analyze these two variables a simple quasistatic force analysis is sufficient.
+\subsection{Quasi-static Force Analysis Assumptions}
+I have found that the main breaking points for successful quasi-static flipping maneuvers are having the requisite pushing force capacity and sufficient traction between the prone robot's shell and the ground.
+To analyze these two variables a simple quasi-static force analysis is sufficient.
 Therefore, from the free-body diagram in Fig. \ref{f:QS_FBD} consider the equilibrium equations:
 
 \begin{figure}[ht]
@@ -434,7 +695,7 @@ We assume the prone robot's shell is sliding along the plow at all times:
   \phi = \mu P \label{e:QSF_plowFriction}
 \end{align}
 
-\subsubsection{Push Force Requisite}
+\subsection{Push Force Requisite}
 Manipulating Eq. \ref{e:QSF_o} and substituting (in order) Eqs. \ref{e:QSF_x}, \ref{e:QSF_y}, \ref{e:QSF_plowFriction}
 
 \begin{align}
@@ -463,7 +724,7 @@ The requisite push force goes to infinity as $\mu$ approaches unity.
 Therefore, we seek to make the friction between the two shells as low as possible.
 We will also need a fairly strong pushing robot.
 
-\subsubsection{Friction Requisite}
+\subsection{Friction Requisite}
 For this analysis we desire (and assume) that the prone robot is rolling without slip along the ground, thereby constraining the friction force inside the cone described by:
 
 \begin{align}
@@ -494,7 +755,13 @@ when we assume the pusher-prone contact is frictionless the requirement on the p
 If the ground friction is insufficient the prone robot will flip up to a specific angle $\theta_{break}$ where the friction constraint is exactly met and then will rotate no further with more pushing.
 At the angle $\theta_{break}$ the prone robot will merely slide across the surface when pushed instead of flipping.
 
-\subsection{Experimental Results}
+\section{Experimental Results}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1.0\textwidth]{QSFlipStrip3.png}
+\caption{Frame sequence of RoACH team performing our cooperative righting maneuver on styrofoam}
+\end{figure}
+
 The VelociRoACH robot was equipped with a cylindrical shell and set to walk forwards for 2 seconds after being setup and aimed at another pronated VelociRoACH robot.
 The experimental results are summarized in Tbl. \ref{tbl:results}
 The flipping maneuver successfully 26 times out of 30 trials. Two of the failures were due to the pushing robot deflecting away from the prone target upon impact.
@@ -527,14 +794,14 @@ Condition Icon\label{tbl:results} & Condition Description & Successes & Avg. Rig
 \end{tabular}
 \end{table*}
 
-\subsubsection{Ground Friction Requisite}
+\subsection{Ground Friction Requisite}
 As shown in Eq. \ref{e:gndFrictionReq} a minimum shell-ground friction coefficient is necessary to successfully perform a quasi-static flip.
 This was tested experimentally by varying the friction coefficient using the added tractive strips made of santoprene rubber.
 The successful design condition discussed above (with the 26/30 success rate) used santoprene strips.
 When these strips were removed the bare plastic failed to grip the ground and 5/5 flip attempts failed.
 This manifested as 3/5 pushes failing due to the prone robot simply skittering away from the pusher, and 2/5 pushes failing after the prone robot twisted (in yaw) away from the push thereby deflecting the pusher off to the side.
 
-\subsubsection{Footrpint Alignment}
+\subsection{Footrpint Alignment}
 In Section \ref{sec:Molds} we chose to narrow designs to prismatic extrustions of 2D shapes, asserting that secondary curvature was actually undesirable.
 That assertion was tested experimentally by varying the entry angle of the prismatic robots to assess alignability and was contrasted with the poor experimental alignment performance of ellipsoidal shells.
 
@@ -551,19 +818,21 @@ The goal of ``terradynamic streaming'' is to create exterior hulls for the robot
 As attested to in this experiment, the ellipsoidal hull is excellent at deflecting away from obstacles.
 This selfsame characteristic becomes undesirable when we instead need the robot to transfer force to obstacles it engages.
 
-\section{Dynamic Flip Method}
-\subsection{Energetic Analysis}
+\chapter{Dynamic Flip Method}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1.0\textwidth]{Dynamic_CoopCartoon.png}
+\caption{Cartoon of ``Dynamic'' Cooperative Flip Technique}
+\end{figure}
+The final flipping method eschews reliance upon friction by replacing it in its role of invisible second figure with the more ubiquitous inertial pseudo-force.
+
+\section{Energetic Analysis}
 
 \begin{align}
 E_1 = \frac{1}{2} m_1 v_1^2 \hspace{3mm} = E_2 = \frac{1}{2} I_2 \omega_2^2 \hspace{3mm} = E_3 = m_2 g \sqrt{d^2+r^2}
 \end{align}
 
-\section{Discussion}
-
-\section{Future Work}
-
-
-\section{Conclusion}
+\chapter{Conclusion: Discussion and Future Work}
 To be written second to last.
 
 \section{Acknowledgements}
