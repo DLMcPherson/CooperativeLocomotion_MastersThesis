@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  21 NOV 2017 09:09
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  21 NOV 2017 12:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1974,40 +1974,81 @@ File: SupportingSkeleton.jpg Graphic file (type QTm)
 
 <use  "SupportingSkeleton.jpg" >
 File: FinishedMold.jpg Graphic file (type QTm)
- <use  "FinishedMold.jpg" > [7] [8]
+ <use  "FinishedMold.jpg" >
+Overfull \hbox (11.29128pt too wide) in paragraph at lines 285--285
+[]\EU1/GillSansMT(0)/bx/n/12 An Aside on Auto-Alignment and Prismatic Shells: v
+ia Reuleaux’s Method
+ []
+
+Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+File: ReuleauxSquare0.eps Graphic file (type eps)
+<ReuleauxSquare0.eps>
+Invalid UTF-8 byte or sequence at line 297 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 297 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 297 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 297 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 297 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 297 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 297 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 297 replaced by U+FFFD.
+File: ReuleauxEllipsoid0.eps Graphic file (type eps)
+ <ReuleauxEllipsoid0.eps> [7]
+Invalid UTF-8 byte or sequence at line 306 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 306 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 306 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 306 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 306 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 306 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 306 replaced by U+FFFD.
+File: ReuleauxSquare.eps Graphic file (type eps)
+ <ReuleauxSquare.eps>
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 307 replaced by U+FFFD.
+File: ReuleauxEllipsoid.eps Graphic file (type eps)
+
+<ReuleauxEllipsoid.eps> [8] [9] [10]
 Chapter 2.
 File: Kinematic_CoopCartoon.png Graphic file (type QTm)
-<use  "Kinematic_CoopCartoon.png" > [9
+<use  "Kinematic_CoopCartoon.png" > [11
 
 ]
-Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 365 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 401 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 401 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 401 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 401 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 401 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 401 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 401 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 401 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 401 replaced by U+FFFD.
 File: ShapeForContact_hinge2.eps Graphic file (type eps)
  <ShapeForContact_hinge2.eps>
-Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 370 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 406 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 406 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 406 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 406 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 406 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 406 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 406 replaced by U+FFFD.
 File: ShapeForContact_jaw.eps Graphic file (type eps)
 
 <ShapeForContact_jaw.eps>
-Overfull \hbox (1.8522pt too wide) in paragraph at lines 363--373
+Overfull \hbox (1.8522pt too wide) in paragraph at lines 399--409
 [][] [] 
  []
 
-[10] [11]
+[12] [13]
 File: Kin_FreeBodyDiagram.png Graphic file (type QTm)
- <use  "Kin_FreeBodyDiagram.png" > [12]
+ <use  "Kin_FreeBodyDiagram.png" > [14]
 File: KinPanel0.jpg Graphic file (type QTm)
  <use  "KinPanel0.jpg" >
 File: KinPanel1.jpg Graphic file (type QTm)
@@ -2023,40 +2064,40 @@ File: KinPanel5.jpg Graphic file (type QTm)
 File: KinPanel6.jpg Graphic file (type QTm)
  <use  "KinPanel6.jpg" >
 File: JammedTelemetry.eps Graphic file (type eps)
- <JammedTelemetry.eps> [13]
-[14]
+ <JammedTelemetry.eps> [15]
+[16]
 File: KinPushForces2.eps Graphic file (type eps)
- <KinPushForces2.eps> [15]
+ <KinPushForces2.eps> [17]
 Chapter 3.
 File: QuasiStatic_CoopCartoon.png Graphic file (type QTm)
 <use  "QuasiStatic_CoopCartoon.png" >
-Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 620 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 656 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 656 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 656 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 656 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 656 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 656 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 656 replaced by U+FFFD.
 File: QS_EnergyAnalysis.eps Graphic file (type eps)
  <QS_EnergyAnalysis.eps>
 File: EnergyLandscape.eps Graphic file (type eps)
 
 <EnergyLandscape.eps>
 File: dEnergyLandscape.eps Graphic file (type eps)
- <dEnergyLandscape.eps> [16
+ <dEnergyLandscape.eps> [18
 
 ]
-Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 718 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 718 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 718 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 718 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 718 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 718 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 718 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 718 replaced by U+FFFD.
 File: QS_FreeBodyDiagram2.eps Graphic file (type eps)
  <QS_FreeBodyDiagram2.eps>
-[17] [18]
+[19] [20]
 File: QSFlipStrip3.png Graphic file (type QTm)
  <use  "QSFlipStrip3.png" >
 File: CircleIcon.png Graphic file (type QTm)
@@ -2079,16 +2120,16 @@ File: CircleIcon.png Graphic file (type QTm)
 
 <use  "CircleIcon.png" >
 File: BareCircleIcon.png Graphic file (type QTm)
- <use  "BareCircleIcon.png" > [19] [20] [21]
+ <use  "BareCircleIcon.png" > [21] [22] [23]
 Chapter 4.
 File: Dynamic_CoopCartoon.png Graphic file (type QTm)
-<use  "Dynamic_CoopCartoon.png" > [22
+<use  "Dynamic_CoopCartoon.png" > [24
 
 ]
 Chapter 5.
-(./MasterDraftV2.bbl [23
+(./MasterDraftV2.bbl [25
 
-] [24
+] [26
 
 ]
 LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 128
@@ -2096,15 +2137,15 @@ LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 128
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/euenc/eu1lmtt.fd
 File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)) [25]
+)) [27]
 (./MasterDraftV2.aux) ) 
 Here is how much of TeX's memory you used:
- 27136 strings out of 493706
- 554618 string characters out of 6145769
+ 27147 strings out of 493706
+ 554827 string characters out of 6145769
  585361 words of memory out of 5000000
- 30058 multiletter control sequences out of 15000+600000
+ 30065 multiletter control sequences out of 15000+600000
  19032 words of font info for 88 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  62i,16n,92p,10380b,565s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on MasterDraftV2.pdf (27 pages).
+Output written on MasterDraftV2.pdf (29 pages).

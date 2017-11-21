@@ -273,7 +273,7 @@ The skeleton is then held in place whilst the poster-board is slipped between th
 The poster-board is pulled taut (so as to avoid wrinkles forming during the suction event) and glued to the skeleton.
 The completed mold is now ready to be used in the vacuum former to shape plastic shells.
 
-\begin{figure}[ht]
+\begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{FinishedMold.jpg}
 \caption{\label{fig:Finished Mold}Rapidly manufactured from flat stock materials into a finished mold ready to produce plastic shells}
@@ -282,7 +282,43 @@ The completed mold is now ready to be used in the vacuum former to shape plastic
 We vacuum formed 0.015 inch thick polycarbonate to our mold using the Formech Compac Mini Vacuum Former.
 The mold was constructed out of standard corrugated cardboard from recycled shipping packages, measuring between 3 and 4 millimeters in thickness (varying by package).
 
-% TODO: Add section leveraging Reauleaux's method to discuss auto-alignment of prismatic shells (which ellipsoidal shells lack).
+\subsection{An Aside on Auto-Alignment and Prismatic Shells: via Reuleaux's Method of Moment Labeling \label{sec:Reuleaux}}
+Besides for simplifying both the manufacturing process and mathematical analyses, prismatic shells grant one more elegant boon: yaw control for cooperation built into mechanics.
+A prismatic shell has a rectangular footprint projected onto the ground plane.
+This footprint will govern how the robot yaws when interacting with the environment.
+We find that a rectangular footprint drives the robot to align with objects (esp. other teammates) it engages with, resulting in stable pushes.
+The stability of a rectangular face can be seen by applying Reuleaux's method.
+Fig. \ref{fig:Reuleaux} shades areas corresponding to moment labels (green for clockwise rotations, red for widdershins rotations).
+Note that for the rectangle-rectangle contact the multilateral constraint rules out centers-of-rotation between the two contacts where the moment labels contradict each other (and is labeled a mixed, muddy brown).
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=0.3\textwidth]{ReuleauxSquare0.eps}
+  \includegraphics[height=0.3\textwidth]{ReuleauxEllipsoid0.eps}
+  \caption{\label{fig:Reuleaux}Applying Reuleaux's method to contact constraints}
+\end{figure}
+
+The true stability is manifested when a second virtual finger is added: either another compatriot robot, friction (assuming weight is distributed symmetrically), or inertial pseudo-force.
+Drawing this added force on the diagram and labeling the possible moments it induces collapses the space of possible rotation centers (see Fig. \ref{fig:ReuleauxApplied}).
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=0.3\textwidth]{ReuleauxSquare.eps}
+  \includegraphics[height=0.3\textwidth]{ReuleauxEllipsoid.eps}
+  \caption{\label{fig:ReuleauxApplied}Improved interaction stability between rectangular footprints over ellipsoidal footprints}
+\end{figure}
+
+The prismatic shells have full force closure and a firm grasp in the yaw axis.
+In contrast, the ellipsoidal shells (the previous art for RoACH shells) still has infinitely many possible rotation centers: confined now to the line through both centers (in the best case) or the area between the centerlines if the pusher is even slightly misaligned.
+Therefore, by Reuleaux's method, the prismatic shells have a stable grasp while the ellipsoidal grasps are an unstable equilibrium.
+
+Leading into these grasps, too, the prismatic shells are more stable.
+If the two rectangles are rotationally offset upon first contact, only one corner of the pusher will touch the prone robot.
+Depending on which side of the center of friction (for quasi-static virtual finger)/center of mass (for dynamic virtual finger)/contact interval (for kinematic virtual finger) this initial touch point is on, the pusher is stably pulled into either a perfectly parallel or perpendicular configuration.
+In contrast, if the ellipsoidal shells are rotationally offset upon first contact, the pusher is deflected away from their compatriot and no (even unstable) grasp is achieved.
+This deflecting behavior was the original appeal of the ellipsoidal design in Chen's work \cite{ChenTerradynamic}, which refered to this effect as ``terradynamic streamlining".
+In our application, however, we don't want to dodge the environment: we wish to grapple with it.
+Therefore, a prismatic shell design is the most judicious choice.
 
 \subsection{Standard Magnet Mount}
 Once the plastic shells are formed to the desired prismatic shape, they are mounted to the robot via modular magnetic mounts (this allows swapping shells between experimental conditions).
@@ -802,15 +838,15 @@ When these strips were removed the bare plastic failed to grip the ground and 5/
 This manifested as 3/5 pushes failing due to the prone robot simply skittering away from the pusher, and 2/5 pushes failing after the prone robot twisted (in yaw) away from the push thereby deflecting the pusher off to the side.
 
 \subsection{Footrpint Alignment}
-In Section \ref{sec:Molds} we chose to narrow designs to prismatic extrustions of 2D shapes, asserting that secondary curvature was actually undesirable.
+In Section \ref{sec:Molds} we chose to narrow designs to prismatic extrusions of 2D shapes, asserting that secondary curvature was actually undesirable.
 That assertion was tested experimentally by varying the entry angle of the prismatic robots to assess alignability and was contrasted with the poor experimental alignment performance of ellipsoidal shells.
 
-Robots with the prismatic design (rectangular footprint) will self-align orthogonally when pressed together.
+As demonstrated in subsection \ref{sec:Reuleaux} via Reuleaux's method, robots with the prismatic design (rectangular footprint) will self-align when pressed together.
 When initialized with alignment (=zero degree offset) the robots stayed align in 28/30 trials.
 When initialized with 30 degree, 45 degree, or 60 degree offsets the alignment succeeded in 5/5, 5/5 and 2/5 trials respectively.
-Therefore past around a 45 degree offset the self-alignability of the shells drops off.
+Therefore, past a 45 degree offset the self-alignability of the shells drops off, instead yawing the robots into the parallel (non-engaged) configuration.
 
-Then we tested robots pushing with ellipsoidal designs (elliptical footprint).
+We then tested pushing with ellipsoidal designs (elliptical footprint).
 Even when initialized already aligned the pusher deflected away from the target robot immediately upon contact (successful alignment in 0/10 trials).
 This is easily understood from a classical grasping standpoint; the elliptical footprint of the pushing robot contacts the target along its unstable major axis.
 This observation also aligns with the design reasoning for why previous shell iterations for the VelociRoACH used ellipsoids: terradynamic streaming.
