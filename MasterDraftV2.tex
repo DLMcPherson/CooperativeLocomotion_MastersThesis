@@ -327,7 +327,7 @@ glued to the lower $\pi/6$ radians of the semi-circle
 A poster-board strip is cut to length according to the formula:
 
 $$
-l_{mountstrip} = 2 \sqrt{r^2 - h_m^2} + 2 (\sin^{-1}(h_m/r) r)
+l_{mountstrip} = 2 \sqrt{r^2 - h_m^2} + 2 r \sin^{-1}(h_m/r)
 $$
 
 where $h_m$ is the height in the shell you want to mount the robot.
@@ -551,7 +551,7 @@ When \textit{push comes to shove} the pushing robot cannot exert sufficient forc
 
 We will analyze this failure using quasi-static analysis in the next section.
 
-\section{Force Analysis}
+\section{Force Analysis \label{sec:KinForces}}
 From the free-body diagram in Fig. \ref{fig:KinFreebody} quasi-static force equilibrium equations are:
 
 \begin{align}
@@ -623,6 +623,7 @@ and
 L = ( -\sin(\alpha+\phi) + \mu \cos(\alpha+\phi) ) \frac{\cos(\theta) m g}{-\mu (1+\cos(\theta + \phi + \alpha)) + \sin(\theta + \phi + \alpha)} + mg
 \end{align}
 
+\begin{comment}
 These forces are plotted as a function of distance in Fig. \ref{fig:KinForces}
 
 \begin{figure}[ht]
@@ -633,19 +634,137 @@ These forces are plotted as a function of distance in Fig. \ref{fig:KinForces}
 
 Note that when the push begins at $x=10 cm$, the required coefficient of friction between ground and robot is higher than the actual foot-ground coefficient range of $0.5$ to $0.7$.
 %TO DO: The push doesn't begin at 10 cm. It begins at 14.9 cm as dictated by w=r+sqrt(4r^2 - h) where h = 3cm (measured).
+\end{comment}
+
+Note that the expressions for $P$ and $L$ both have a dividing term
+
+$$-\mu (1+\cos(\theta + \phi + \alpha)) + \sin(\theta + \phi + \alpha)$$
+
+which arises from their dependence on $N$ with the term being proportional to the moment arm of $N+F$ around the hinge.
+For every righting procedure between two circles, there will always be a point where the line of action of $N+F$ (which forms an angle $\psi = \tan^-1(1/\mu)$ to the line connecting the two circles' centers) will intersect the hinge, resulting in a zero moment arm and:
+
+$$-\mu (1+\cos(\theta + \phi + \alpha)) + \sin(\theta + \phi + \alpha) = 0$$
+
+This arithmetical breakdown from dividing by zero arises from our a breakdown in our assumptions; namely, that the shells are always sliding against each other.
+Instead, we find the shells \textbf{must be} sticking.
+This was the observed problem in the robotic experiments that caused the jamming seen in Fig. \ref{fig:JammedKinFlipTelemetry}.
+%TODO: Why doesn't this jamming when I use the infinitely-powerful actuator (my arm) to move the robots together?
 
 \chapter{Quasistatic Flip Method}
-
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1.0\textwidth]{QuasiStatic_CoopCartoon.png}
 \end{figure}
 
-\section{Analysis}
+Kinematic manipulation design focuses on the pure geometry of the problem.
+As we witnessed, this myopic physics treatment neglects important possible confounds like friction.
+In Section \ref{sec:KinForces} we saw that despite working kinematically, it does not work quasi-statically as the friction force causes the push to jam.
+
+The beauty of engineering is that we can convert this confounding force into a useful force.
+By accounting for quasi-static forces like friction in our design we can create a more versatile cooperative locomotive maneuver.
+The friction force can replace the second finger in creating the moment couple, thereby only requiring one compatriot robot.
+
+Our shell design for the quasi-static flip is inspired by that most classic of inventions: the wheel.
+We will use a semi-circular elliptical prism with a high friction tire attached.
+The maneuver only requires the compatriot robot to run into the prone robot: the auto-alignment (from Sec. \ref{sec:Reuleaux}) will take care of the rest.
+
+\section{Newtonian Analysis}
+I have found that the main breaking points for successful quasi-static flipping maneuvers are having the requisite pushing force capacity and sufficient traction between the prone robot's shell and the ground.
+To analyze these two variables a simple quasi-static force analysis is sufficient.
+
+For this pushing maneuver to succeed, both ``fingers'' must have sufficient force capacity: both the compatriot robot's push and the ground's friction force.
+These can be readily obtained by an quasistatic Newtonian analysis.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{QS_FreeBodyDiagram2.eps}
+\caption{\label{f:QS_FBD}Freebody Diagram for Quasi-static Newtonian Analysis}
+\end{figure}
+
+We extract the equilibrium equations from the free-body diagram in Fig. \ref{f:QS_FBD} as:
+
+\begin{align}
+  F = P \label{e:QSF_x} \\
+  N = mg + \phi \label{e:QSF_y} \\
+  P d \cos(\theta) + F(r - d \cos(\theta)) - N d \sin(\theta) - \phi (r - d \sin(\theta)) = 0 \label{e:QSF_o}
+\end{align}
+
+We also assume the prone robot's shell is sliding along the compatriot robot's front at all times (no lip for catching and hinging, unlike the Kinematic Flip's design):
+
+\begin{align}
+  \phi = \mu P \label{e:QSF_plowFriction}
+\end{align}
+
+\subsection{Push Force Requisite}
+Manipulating Eq. \ref{e:QSF_o} and substituting (in order) Eqs. \ref{e:QSF_x}, \ref{e:QSF_y}, \ref{e:QSF_plowFriction}
+
+\begin{align}
+  0 &= P d \cos(\theta) + P(r - d \cos(\theta)) - N d \sin(\theta) - \phi (r - d \sin(\theta))
+  \\&= Pr - N d \sin(\theta) - \phi (r - d \sin(\theta))
+  \\&= Pr - (mg + \phi) d \sin(\theta) - \phi (r - d \sin(\theta))
+  \\&= Pr - mg d \sin(\theta) - \phi r
+  \\&= (P - \phi)r - mg d \sin(\theta)
+  \\&= (1-\mu) P r - mg d \sin(\theta)
+\end{align}
+
+Solving for $P$ yields:
+
+\begin{align}
+  P = \frac{mg}{1-\mu} \frac{d}{r} \sin(\theta)
+\end{align}
+
+Which means that the pushing robot needs to be able to apply at least the maximum push force required throughout the manipulation:
+
+\begin{align}
+  \text{push capacity} \geq P_{max} = \max_\theta \frac{mg}{1-\mu} \frac{d}{r} \sin(\theta) = \frac{mg}{1-\mu} \frac{d}{r}
+\end{align}
+
+Note that any friction between the pusher's front surface and the pronated robot's shell increases the required push force.
+The requisite push force goes to infinity as $\mu$ approaches unity.
+Therefore, we seek to make the friction between the two shells as low as possible.
+We will also need a fairly strong pushing robot.
+
+\subsection{Friction Requisite}
+For this analysis we desire (and assume) that the prone robot is rolling without slip along the ground, thereby constraining the friction force inside the cone described by:
+
+\begin{align}
+  F \leq h N \label{e:QSF_groundFriction}
+\end{align}
+
+where $h$ is the friction coefficient between the pronated shell and the ground.
+Plugging Eq. \ref{e:QSF_x} into the left-hand side of Eq. \ref{e:QSF_groundFriction} and Eq. \ref{e:QSF_y} into the right-hand side (along with Eq. \ref{e:QSF_plowFriction}) yields:
+
+\begin{align}
+  P \leq \frac{hmg}{1-h\mu} \label{e:QSF_pushConstraint1} \hspace{5mm} \forall \theta
+\end{align}
+
+The tightest bound will be at the $\theta$ when push force is maximized $P_{max}$:
+
+\begin{align}
+  P_{max} = \frac{mg}{1-\mu} \frac{d}{r} &\leq \frac{hmg}{1-h\mu} \\
+  \frac{1}{1-\mu} \frac{d}{r} &\leq \frac{h}{1-h\mu}
+  \label{e:gndFrictionReq}
+\end{align}
+
+when we assume the shell-shell contact is frictionless the requirement on the shell-ground contact reduces to:
+
+\begin{align}
+  \frac{d}{r} &\leq h
+\end{align}
+
+If the ground friction is insufficient the prone robot will only roll up to a critical angle $\theta_{break}$.
+At that point the friction constraint is exactly met, the prone robot will begin to slide, and any further pushing will only result in sliding instead of rolling.
+To avoid this failure mode, we add a Santoprene tire at both ends of the robot shell, thereby boosting shell-ground contact $h$ while leaving a section of the shell smooth for low friction shell-shell contacts $\mu$.
+
+\section{Hamiltonian Analysis}
+We have now proposed a new flipping strategy predicated on quasi-static forces; filling the quasi-static niche in Mason's taxonomy of manipulation \cite{MasonMORMBook}.
+With a Newtonian (or, as Mason would call quasi-static analysis, Aristotelian) analysis we have prescribed the conditions for a successful cooperative righting maneuver.
+In this section we analyze the performance of the flip in time, extending to a dynamic investigation.
+We will use a Hamiltonian formulation to model this constrained dynamic system (rolling without slip reduces the problem from three states to one state).
+Furthermore, we will use this energetic analysis to argue that the semi-circle is optimal for our problem.
+
 The VelociRoACH platform is optimized for speed and robustness, not torque and stability (which would be what we need for stable pushing).
 Accordingly our shell design for this platform must aim to minimize the requisite maximum power transfer necessary (throughout the maneuver).
-
-\subsection{Energy Landscape}
 This can be analyzed by the change in potential energy as the prone robot undergoes rotation.
 To this end, let us find the gravitational potential energy of a tilted robot at each angular configuration.
 We narrow our focus of shell shape design to the class of 3D shapes with elliptical cross sections in the plane of rotation.
@@ -708,89 +827,6 @@ Note that the maximum force for pushing a circle is non-decreasing and is maximu
 In contrast, the maximum force for pushing an ellipse is much larger and occurs in the middle of the pushing maneuver.
 We will see this larger energy requisite manifest as significantly slower pushing maneuvers when operating on ellipses.
 
-\subsection{Quasi-static Force Analysis Assumptions}
-I have found that the main breaking points for successful quasi-static flipping maneuvers are having the requisite pushing force capacity and sufficient traction between the prone robot's shell and the ground.
-To analyze these two variables a simple quasi-static force analysis is sufficient.
-Therefore, from the free-body diagram in Fig. \ref{f:QS_FBD} consider the equilibrium equations:
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{QS_FreeBodyDiagram2.eps}
-\caption{\label{f:QS_FBD}Freebody Diagram for Quasi-static Force and Friction Analysis}
-\end{figure}
-
-\begin{align}
-  F = P \label{e:QSF_x} \\
-  N = mg + \phi \label{e:QSF_y} \\
-  P d \cos(\theta) + F(r - d \cos(\theta)) - N d \sin(\theta) - \phi (r - d \sin(\theta)) = 0 \label{e:QSF_o}
-\end{align}
-
-We assume the prone robot's shell is sliding along the plow at all times:
-
-\begin{align}
-  \phi = \mu P \label{e:QSF_plowFriction}
-\end{align}
-
-\subsection{Push Force Requisite}
-Manipulating Eq. \ref{e:QSF_o} and substituting (in order) Eqs. \ref{e:QSF_x}, \ref{e:QSF_y}, \ref{e:QSF_plowFriction}
-
-\begin{align}
-  0 &= P d \cos(\theta) + P(r - d \cos(\theta)) - N d \sin(\theta) - \phi (r - d \sin(\theta))
-  \\&= Pr - N d \sin(\theta) - \phi (r - d \sin(\theta))
-  \\&= Pr - (mg + \phi) d \sin(\theta) - \phi (r - d \sin(\theta))
-  \\&= Pr - mg d \sin(\theta) - \phi r
-  \\&= (P - \phi)r - mg d \sin(\theta)
-  \\&= (1-\mu) P r - mg d \sin(\theta)
-\end{align}
-
-Solving for $P$ yields:
-
-\begin{align}
-  P = \frac{mg}{1-\mu} \frac{d}{r} \sin(\theta)
-\end{align}
-
-Which means that the pushing robot needs to be able to apply at least the maximum push force required throughout the manipulation:
-
-\begin{align}
-  \text{push capacity} \geq P_{max} = \max_\theta \frac{mg}{1-\mu} \frac{d}{r} \sin(\theta) = \frac{mg}{1-\mu} \frac{d}{r}
-\end{align}
-
-Note that any friction between the pusher's front surface and the pronated robot's shell increases the required push force.
-The requisite push force goes to infinity as $\mu$ approaches unity.
-Therefore, we seek to make the friction between the two shells as low as possible.
-We will also need a fairly strong pushing robot.
-
-\subsection{Friction Requisite}
-For this analysis we desire (and assume) that the prone robot is rolling without slip along the ground, thereby constraining the friction force inside the cone described by:
-
-\begin{align}
-  F \leq h N \label{e:QSF_groundFriction}
-\end{align}
-
-where $h$ is the friction coefficient between the pronated shell and the ground.
-Plugging Eq. \ref{e:QSF_x} into the left-hand side of Eq. \ref{e:QSF_groundFriction} and Eq. \ref{e:QSF_y} into the right-hand side (along with Eq. \ref{e:QSF_plowFriction}) yields:
-
-\begin{align}
-  P \leq \frac{hmg}{1-h\mu} \label{e:QSF_pushConstraint1} \hspace{5mm} \forall \theta
-\end{align}
-
-The tightest bound will be at the $\theta$ when push force is maximized $P_{max}$:
-
-\begin{align}
-  P_{max} = \frac{mg}{1-\mu} \frac{d}{r} &\leq \frac{hmg}{1-h\mu} \\
-  \frac{1}{1-\mu} \frac{d}{r} &\leq \frac{h}{1-h\mu}
-  \label{e:gndFrictionReq}
-\end{align}
-
-when we assume the pusher-prone contact is frictionless the requirement on the prone-ground contact reduces to:
-
-\begin{align}
-  \frac{d}{r} &\leq h
-\end{align}
-
-If the ground friction is insufficient the prone robot will flip up to a specific angle $\theta_{break}$ where the friction constraint is exactly met and then will rotate no further with more pushing.
-At the angle $\theta_{break}$ the prone robot will merely slide across the surface when pushed instead of flipping.
-
 \section{Experimental Results}
 \begin{figure}[ht]
 \centering
@@ -832,8 +868,8 @@ Condition Icon\label{tbl:results} & Condition Description & Successes & Avg. Rig
 
 \subsection{Ground Friction Requisite}
 As shown in Eq. \ref{e:gndFrictionReq} a minimum shell-ground friction coefficient is necessary to successfully perform a quasi-static flip.
-This was tested experimentally by varying the friction coefficient using the added tractive strips made of santoprene rubber.
-The successful design condition discussed above (with the 26/30 success rate) used santoprene strips.
+This was tested experimentally by varying the friction coefficient using the added tractive strips made of Santoprene rubber.
+The successful design condition discussed above (with the 26/30 success rate) used Santoprene strips.
 When these strips were removed the bare plastic failed to grip the ground and 5/5 flip attempts failed.
 This manifested as 3/5 pushes failing due to the prone robot simply skittering away from the pusher, and 2/5 pushes failing after the prone robot twisted (in yaw) away from the push thereby deflecting the pusher off to the side.
 
