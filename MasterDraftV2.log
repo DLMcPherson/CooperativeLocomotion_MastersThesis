@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  21 NOV 2017 18:13
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  22 NOV 2017 11:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2123,11 +2123,11 @@ Chapter 4.
 File: Dynamic_CoopCartoon.png Graphic file (type QTm)
 <use  "Dynamic_CoopCartoon.png" > [24
 
-]
+] [25]
 Chapter 5.
-(./MasterDraftV2.bbl [25
+(./MasterDraftV2.bbl [26
 
-] [26
+] [27
 
 ]
 LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 128
@@ -2135,15 +2135,15 @@ LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 128
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/euenc/eu1lmtt.fd
 File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)) [27]
+)) [28]
 (./MasterDraftV2.aux) ) 
 Here is how much of TeX's memory you used:
- 27145 strings out of 493706
- 554791 string characters out of 6145769
+ 27147 strings out of 493706
+ 554827 string characters out of 6145769
  583361 words of memory out of 5000000
- 30064 multiletter control sequences out of 15000+600000
+ 30066 multiletter control sequences out of 15000+600000
  19032 words of font info for 88 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  62i,16n,92p,10380b,565s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on MasterDraftV2.pdf (29 pages).
+Output written on MasterDraftV2.pdf (30 pages).

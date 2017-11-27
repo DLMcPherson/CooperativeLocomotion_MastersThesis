@@ -756,7 +756,7 @@ If the ground friction is insufficient the prone robot will only roll up to a cr
 At that point the friction constraint is exactly met, the prone robot will begin to slide, and any further pushing will only result in sliding instead of rolling.
 To avoid this failure mode, we add a Santoprene tire at both ends of the robot shell, thereby boosting shell-ground contact $h$ while leaving a section of the shell smooth for low friction shell-shell contacts $\mu$.
 
-\section{Hamiltonian Analysis}
+\section{Hamiltonian Analysis \label{sec:QS_HamAnalysis}}
 We have now proposed a new flipping strategy predicated on quasi-static forces; filling the quasi-static niche in Mason's taxonomy of manipulation \cite{MasonMORMBook}.
 With a Newtonian (or, as Mason would call quasi-static analysis, Aristotelian) analysis we have prescribed the conditions for a successful cooperative righting maneuver.
 In this section we analyze the performance of the flip in time, extending to a dynamic investigation.
@@ -894,15 +894,44 @@ This selfsame characteristic becomes undesirable when we instead need the robot 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1.0\textwidth]{Dynamic_CoopCartoon.png}
-\caption{Cartoon of ``Dynamic'' Cooperative Flip Technique}
+\caption{Cartoon of ``Dynamic'' Cooperative Flip Technique \label{fig:DynCartoon}}
 \end{figure}
-The final flipping method eschews reliance upon friction by replacing it in its role of invisible second figure with the more ubiquitous inertial pseudo-force.
+The final flipping method eschews reliance upon friction by replacing it (in its role of invisible second finger) with the more ubiquitous inertial pseudo-force.
+This flipping method is purely ballistic, and by relying on dynamic effects fills the last niche in Mason's taxonomy of manipulation \cite{MasonMORMBook}.
+Indeed, the VelociRoACH platform is optimized for speed over pushing strength (as was required for the quasi-static flipping method), so this dynamic flipping method plays to its strengths.
+The design challenge will be in ensuring that the transferred kinetic energy from compatriot to pronate is stored as rotational kinetic energy instead of translational kinetic energy.
 
-\section{Energetic Analysis}
+\section{Hamiltonian Analysis}
+If friction can be relied upon, then the system collapses from three states to one thanks to the rolling constraint.
+The Hamiltonian for this dynamic system will be the same as that explored in Sec. \ref{sec:QS_HamAnalysis}:
 
 \begin{align}
-E_1 = \frac{1}{2} m_1 v_1^2 \hspace{3mm} = E_2 = \frac{1}{2} I_2 \omega_2^2 \hspace{3mm} = E_3 = m_2 g \sqrt{d^2+r^2}
+  H(p,\theta) = U(\theta) + T(p,\theta) =
 \end{align}
+
+However, the strength of this more dynamic flipping scheme (purely ballistic) is that it works even in absence of friction.
+Without the rolling constraint, our system maintains all three degrees of freedom.
+The Hamiltonian problem becomes fairly simple:
+
+\begin{align}
+  H(p,z) = U(z) + T(p) = m g h + \frac{1}{2 m} p^2
+\end{align}
+
+Indeed, we get discover a basic success condition by evaluating the Hamiltonian at the first three snapshots shown in Fig. \ref{fig:DynCartoon} (and assuming energy transfer is purely elastic and optimally transferred to rotational kinetic energy):
+
+\begin{align}
+H_0 = \frac{1}{2} m_1 v_1^2  \\
+H_1 = \frac{1}{2} I_2 \omega_2^2  \\
+H_2 = m_2 g \sqrt{d^2+r^2} \\
+\rightarrow v_1 &= \sqrt{\frac{m_2}{m_1}g \sqrt{d^2+r^2}} \\
+ v_1 &= \sqrt{g \sqrt{d^2+r^2}}
+\end{align}
+
+We need the initial velocity of the ballistic compatriot to be at least $\sqrt{g \sqrt{d^2+r^2}}$ to hope to crest the potential barrier.
+In reality we'll need the initial velocity to be greater than that to deal with leakages to translational kinetic energy (slippage) and inelastic loss of impact.
+
+\section{Experimental Results}
+No results
 
 \chapter{Conclusion: Discussion and Future Work}
 To be written second to last.
