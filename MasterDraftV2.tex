@@ -47,11 +47,10 @@
 \global\csname @botnum\endcsname 0
 
 \begin{abstract}
-Two are better than one. This truism is the foundation and the motive force that birthed society.
-Naturally, we want to imbue this power into our metal children.
-Imitating birds and fish, we built swarms that could keep formation via elegant decentralized control algorithms.
-Inspired by ants, we applied formation keeping to carrying loads as a mobile robot team.
-In this work, we further specialize this collaborative manipulation to moving other team mates thereby creating collaborative locomotion.
+Nature's self-organizing teams have long inspired engineering researchers.
+Imitating birds and fish, researchers built swarms that could keep formation via elegant decentralized control algorithms.
+Inspired by ants, they applied formation keeping to carrying loads as a mobile robot team.
+In this work, we further specialize this collaborative manipulation to manipulating team-mates, thereby creating collaborative locomotion.
 Our design space is enriched by designing both the manipulator and the manipulatee at the same time.
 Traditional collaborative manipulation work focuses on manipulating objects in the same plane of movement as the mobile robots and adheres strictly to form or force closure manipulation paradigms.
 Our new design richness allows us to leverage work on in-hand, dexterous manipulation and dynamic manipulation techniques to manipulate objects (now teammates) in degrees of freedom (DOF) outside our plane of movement.
@@ -69,12 +68,10 @@ We investigate each method analytically as well as implementing the best method 
 \end{abstract}
 
 \section{Introduction to Cooperative Locomotion}
-Humanity's greatest strength is our social prowess; clearly we want to bestow this greatest of all gifts to our silicon offspring.
-Even animals exhibit social behavior that result in some of the most awe-inspiring feats in the animal kingdom.
 Dolphins leaping in unison, birds soaring in tight formation, and ants carrying away feasts spark the imagination of children and engineers alike.
 It should come as no surprise, then, that roboticists have striven for decades to imbue robots with that selfsame social spark.
-And we have succeeded to some extent.
-Decentralized control strategies inspired by flying birds \cite{reynolds1987flocks} produce tight formation controls for our flying robots \cite{RealBoids}.
+And humanity has succeeded to some extent.
+Decentralized control strategies inspired by flocks of birds \cite{reynolds1987flocks} produce tight formation controls for our flying robots \cite{RealBoids}.
 This newfound capacity for formation control enabled cooperative manipulation of objects \cite{rus1995moving,sugar2002control,spletzer2001cooperative,song2002potential} just like ants \cite{kube2000cooperative}.
 We take this a step further by having teams manipulate a very special object: another team member.
 Inspired by self-assemblages \cite{Anderson2002} and intermediate-level parts \cite{Anderson2001} used by social insects, the team can add news modes of movement and controllable DoF for our robots.
@@ -150,10 +147,10 @@ Team manipulation ports these concepts by simply viewing each robot as a separat
 This idea was spearheaded and popularized by Daniela Rus in her seminal work on furniture moving robots \cite{rus1995moving}.
 The idea was evolved and matured by Vijay Kumar's group to include tactile feedback \cite{sugar2002control}, vision-based formation keeping \cite{spletzer2001cooperative}, and elegant decentralized control methods \cite{song2002potential}.
 However, these works can only achieve manipulation within the plane that the mobile robots drive upon.
-I am interested in adding out of plane rolling capability to a mobile team manipulator.
+This work adds out-of-plane rolling capability to a mobile team manipulator by incorporating dexterous manipulation techniques.
 
 \subsection{Cage-Free Manipulation}
-I accomplish this feat by tapping into cage-free manipulation techniques that embrace dynamics and askew forces to create more complex manipulations.
+We accomplish this feat by tapping into cage-free manipulation techniques that embrace dynamics and askew forces to create more complex manipulations.
 Beautiful examples of this elegant manipulation philosophy is championed by Matt Mason's Manipulation Lab \cite{lynch1999dynamic}\cite{dafle2014extrinsic}.
 My work particularly pulls upon his student Alex Rodriguez's work on shape design that molds the normal forces applied throughout a surface contact interaction to achieve the desired manipulation \cite{rodriguez2013effector}.
 
@@ -168,7 +165,7 @@ Biomimetic approaches such as the TERMES \cite{werfel2014designing} construction
 \subsection{Self Righting}
 In this work we focus on the cooperative locomotion example of cooperative righting.
 Therefore, we should compare this work to alternative righting schemes that utilize an individual robot's spare degrees of freedom to effect a roll.
-For example, Li et al. \cite{li2016cockroach} added special purpose biomimetic mechanisms for self-righting inspired by beetles' wings.
+For example, Chen et al. \cite{li2016cockroach} added special purpose biomimetic mechanisms for self-righting inspired by beetles' wings.
 Similarly, Casarez and Fearing \cite{casarezTailRighting} demonstrate how adding an extra motorized tail can provide a self-righting behavior.
 Saranli et al. \cite{saranli2004model} use the actuators they already have to roll: by flailing the robot's legs they can induce a roll moment on the body.
 
@@ -200,8 +197,8 @@ We accomplish our cooperative locomotion through dynamic and dexterous manipulat
 These techniques rely upon molding the force vectors that are applied throughout by the manipulation contacts.
 These contact forces are governed by the shape and material of the outer hull of the robot.
 By adding shells to our robotic platform we can mold the reaction force landscape to suit our purposes.
-This was used in Li \cite{ChenTerradynamic} to affect how environmental obstacles push on the robot while traversing cluttered terrain.
-Whereas Li sought to use reaction forces to disengage from objects, we instead employ these forces to manipulate said objects.
+This was used in Chen \cite{ChenTerradynamic} to affect how environmental obstacles push on the robot while traversing cluttered terrain.
+Whereas Chen sought to use reaction forces to disengage from objects, we instead employ these forces to manipulate said objects.
 Therefore, the crux of our work is designing the shell shapes for our robot.
 
 \begin{table}[tb]
@@ -229,15 +226,15 @@ Shell-ground contact friction coefficient & $h$ & $0.26$ \\
 \end{table}
 
 \section{Shell Construction}
-Shell shapes are the central design problem. Therefore, the design cycle of the shell is of utmost import.
-To expedite the rate of design iterations, I refined the shell manufacture process by removing the primary bottleneck: speeding mold creation from days to hours.
+Shell shapes are a central design problem for our application. Therefore, the design cycle of the shell is of utmost import.
+To expedite the rate of design iterations, we refined the shell manufacture process by removing the primary bottleneck: speeding mold creation from days to hours.
 \subsection{Mold Prototyping}
 \label{sec:Molds}
 Previously, in our lab we used additive manufacturing to print a mold for the shell shape.
 This required multi-day printing sessions to manufacture a piece measuring 10x19x10 centimetres.
 The printed thermoplastic mold would then be coated with paint so that it could withstand the molten plastic it was designed to mold in the vacuum former.
-Although this method allowed nigh-infinite design freedom for shell shape, it was unacceptably slow and costly for the rate at which I needed to produce shells.
-The solution I have pioneered sacrifices design flexibility for prototyping rapidity.
+Although this method allowed nigh-infinite design freedom for shell shape, it was unacceptably slow and costly for the rate at which we needed to produce shells.
+The solution we have pioneered sacrifices design flexibility for prototyping rapidity.
 
 Our analysis will planarize the three-dimensional problem as we focus on actuating the roll degree of freedom.
 Therefore, we are only interested in the two-dimensional profile of the shell and should eliminate secondary curvature along the depth-axis to prevent unwanted yaw rotations and other confounding effects.
@@ -276,14 +273,14 @@ The completed mold is now ready to be used in the vacuum former to shape plastic
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{FinishedMold.jpg}
-\caption{\label{fig:Finished Mold}Rapidly manufactured from flat stock materials into a finished mold ready to produce plastic shells}
+\caption{\label{fig:Finished Mold}Manufactured from flat stock materials, the finished mold is ready to vacuum form plastic shells}
 \end{figure}
 
 We vacuum formed 0.015 inch thick polycarbonate to our mold using the Formech Compac Mini Vacuum Former.
 The mold was constructed out of standard corrugated cardboard from recycled shipping packages, measuring between 3 and 4 millimeters in thickness (varying by package).
 
 \subsection{An Aside on Auto-Alignment and Prismatic Shells: via Reuleaux's Method of Moment Labeling \label{sec:Reuleaux}}
-Besides for simplifying both the manufacturing process and mathematical analyses, prismatic shells grant one more elegant boon: yaw control for cooperation built into mechanics.
+Besides for simplifying both the manufacturing process and mathematical analyses, prismatic shells grant one more elegant boon: yaw control for cooperation is built into the mechanics.
 A prismatic shell has a rectangular footprint projected onto the ground plane.
 This footprint will govern how the robot yaws when interacting with the environment.
 We find that a rectangular footprint drives the robot to align with objects (esp. other teammates) it engages with, resulting in stable pushes.
@@ -298,7 +295,7 @@ Note that for the rectangle-rectangle contact the multilateral constraint rules 
   \caption{\label{fig:Reuleaux}Applying Reuleaux's method to contact constraints}
 \end{figure}
 
-The true stability is manifested when a second virtual finger is added: either another compatriot robot, friction (assuming weight is distributed symmetrically), or inertial pseudo-force.
+The true stability is manifested when a second virtual finger is added: either another compatriot robot, friction (assuming weight is distributed symmetrically), or the inertial pseudo-force.
 Drawing this added force on the diagram and labeling the possible moments it induces collapses the space of possible rotation centers (see Fig. \ref{fig:ReuleauxApplied}).
 
 \begin{figure}[ht]
@@ -330,7 +327,7 @@ $$
 l_{mountstrip} = 2 \sqrt{r^2 - h_m^2} + 2 r \sin^{-1}(h_m/r)
 $$
 
-where $h_m$ is the height in the shell you want to mount the robot.
+where $h_m$ is the height in the shell we aim to mount the robot.
 For our experiments we choose $h_m = r/2 = 25$ mm resulting in:
 
 $$
@@ -344,6 +341,10 @@ This reinforcement layer also has two 9.5 mm diameter holes cut 24 mm from the c
 The strip was then affixed to the shell via permanent adhesive. The adhesive used was LOCTITE495 Instant Adhesive.
 See Fig. \ref{fig:ShellRoACH} for picture of mounted shell.
 
+
+
+
+
 \chapter{Kinematic Flip Method}
 \begin{figure}[ht]
 \centering
@@ -355,7 +356,7 @@ This is the natural place to begin our translation from cooperative manipulation
 Form closure and its derivative force closure guarantee a grasp upon an object.
 With object position fully determined by the manipulator, manipulation reduces to the Piano Movers' Problem in position-space for form closure or in expanded state spaces to match the dependencies of the force for force closure.
 
-We use two compatriot robots to right the pronated team-mate which allows full force closure using gravity.
+We use two compatriot robots to right the pronated team-mate. This couple kinematically constrains the manipulatee in the plane (we assume a pivot contact and a sliding contact).
 Accordingly the pronated robot's pose is dictated entirely by problem geometry and evolves kinematically (independent of inertia and frictional forces).
 Yet even in this simplified analysis we must still carefully design the robots' shape. Without this consideration our cooperative manipulator can only manipulate in the same degrees of freedom as the manipulators (the robot ``fingers'') can move in.
 %Yet even in this simplified domain, we must still carefully carve the curves of our carriers' carcasses to caress the crabbed creation.
@@ -395,18 +396,18 @@ where $u$ parametrizes the motion\footnote{$u$ can be thought as an analogue to 
 The \textit{motion orbits}\footnote{\textit{motion orbits} are a central concept in Rodriguez' formulation \cite{rodriguez2013effector}. Mathematically, they are the integral curves of the \textit{motion} $\mathcal{M}(z,u)$. Physically, they represent the path a point on the designed shape follows throughout the motion. Solutions are obtained by propagating constraints backwards along orbit lines. \textit{Motions} $\mathcal{M}$ can be $u$-varying and nonlinear, in general, and oft-times create more rich \textit{motion orbits} than the simplifed ones seen here.}
  of the hinging motion, which are the concentric circles around the hinge.
 
-\begin{figure}[ht]
-  \begin{subfigure}[t]{0.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth,trim={10cm 5cm 0 5cm},clip]{ShapeForContact_hinge2.eps}
-    \caption{\label{fig:rotMot}Motion Orbits of Pronated Copy of Shell under Hinge Effector}
-  \end{subfigure}
-  \begin{subfigure}[t]{0.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{ShapeForContact_jaw.eps}
-    \caption{\label{fig:transMot}Motion Orbits of Parallel Compatriot Copy of Shell under Jaw Effector}
-  \end{subfigure}
-\end{figure}
+ \begin{figure}[ht]
+   \begin{subfigure}[t]{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth,trim={10cm 5cm 0 5cm},clip]{ShapeForContact_hinge2.eps}
+     \caption{\label{fig:rotMot}Motion Orbits of Pronated Copy of Shell under Hinge Effector}
+   \end{subfigure}
+   \begin{subfigure}[t]{0.5\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{ShapeForContact_jaw.eps}
+     \caption{\label{fig:transMot}Motion Orbits of Parallel Compatriot Copy of Shell under Squeeze Effector}
+   \end{subfigure}
+ \end{figure}
 
 The coupled problem investigates the relative motion of the parallel compatriot robot: a closing gap, mimicking parallel jaw grippers, that pushes the prone robot up and over.
 Therefore, the compatriot robot translates purely sideways with \textit{motion field}:
@@ -461,21 +462,6 @@ where $R(\theta) = \begin{bmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) 
 
 Therefore, our task is to come up with three functions $C(s), s_{0r}(u), s_{0t}(u)$ that will satisfy the Eqs. \ref{eq:ShapeConstraints1} and \ref{eq:ShapeConstraints2}.
 Rather than solve this problem for a choice of $x(u), \theta(u)$, we instead posit a solution to the problem and find the $x(u),\theta(u)$ it satisfies.
-
-\begin{comment}
-\section{Design Evolution}
-The design started by exclusively examining the design of the pushing robot's contact surface, oblivious of the design choices inherent in the shape of the robot we were pushing (which was the ellipsoidal shape already extant in our lab from \cite{ChenTerradynamic}) and choice of backstop to push against (which we assumed was a suitable, external, environment fixture).
-We started by shaping the plow as the inverse of the turtled robots' ellipsoidal shape.
-This curved front plow resembled a snow shovel.
-However, we quickly realized that the robot only contacted one slope on this curved surface throughout the pushing procedure, allowing us to simplify the spline into fewer and fewer approximating lines until it was a just a single sloped surface.
-Inspired by robust grasping research, we also experimented with a cylindrical pushing surface, which worked fantastically.
-This was the point where my research hit a road block from discouragement about the apparent triviality of designing a plow for righting (apparently any shape I could try would work)!
-
-I realized that the power in this design was actually in the co-design of manipulator and manipulatee and that I had blindly initialized to an extremely good turtled robot shell.
-I also realized that my assumptions about having a backstop fixture could be made more practical by instituting a third robot as a backstop robot.
-Upon this realization I made the backstop the cylindrical surface and made the wall become a moving robot instead.
-This streamlined the number of specialized manipulation surfaces needed.
-\end{comment}
 
 \section{Kinematic Analysis of Semi-Circular Prismatic Shells}
 This flipping method is termed the ``Kinematic Flip'' since the flipping action is due purely to contact constraints that geometrically force the pronated robot through a series of poses up to the tipping point.
@@ -648,9 +634,9 @@ $$-\mu (1+\cos(\theta + \phi + \alpha)) + \sin(\theta + \phi + \alpha) = 0$$
 This arithmetical breakdown from dividing by zero arises from our a breakdown in our assumptions; namely, that the shells are always sliding against each other.
 Instead, we find the shells \textbf{must be} sticking.
 This was the observed problem in the robotic experiments that caused the jamming seen in Fig. \ref{fig:JammedKinFlipTelemetry}.
-%TODO: Why doesn't this jamming when I use the infinitely-powerful actuator (my arm) to move the robots together?
+%TODO: Why doesn't this jam when I use the infinitely-powerful actuator (my arm) to move the robots together?
 
-\chapter{Quasistatic Flip Method}
+\chapter{Quasi-static Flip Method}
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1.0\textwidth]{QuasiStatic_CoopCartoon.png}
@@ -665,15 +651,17 @@ By accounting for quasi-static forces like friction in our design we can create 
 The friction force can replace the second finger in creating the moment couple, thereby only requiring one compatriot robot.
 
 Our shell design for the quasi-static flip is inspired by that most classic of inventions: the wheel.
-We will use a semi-circular elliptical prism with a high friction tire attached.
-The maneuver only requires the compatriot robot to run into the prone robot: the auto-alignment (from Sec. \ref{sec:Reuleaux}) will take care of the rest.
+We will use a semi-circular prism with a high friction tire attached.
+The maneuver only requires the compatriot robot to run into the prone robot; the auto-alignment (from Sec. \ref{sec:Reuleaux}) will take care of the rest.
+
+This design is also inspired by domed turtle shells. Domokos et. al \cite{domokos2008geometry} studied how turtles' shell shapes allow them to right themselves when tipped over.
 
 \section{Newtonian Analysis}
-I have found that the main breaking points for successful quasi-static flipping maneuvers are having the requisite pushing force capacity and sufficient traction between the prone robot's shell and the ground.
+The main breaking points for successful quasi-static flipping maneuvers are having the requisite pushing force capacity and sufficient traction between the prone robot's shell and the ground.
 To analyze these two variables a simple quasi-static force analysis is sufficient.
 
 For this pushing maneuver to succeed, both ``fingers'' must have sufficient force capacity: both the compatriot robot's push and the ground's friction force.
-These can be readily obtained by an quasistatic Newtonian analysis.
+These can be readily obtained by an quasi-static Newtonian analysis.
 
 \begin{figure}[ht]
 \centering
@@ -685,25 +673,25 @@ We extract the equilibrium equations from the free-body diagram in Fig. \ref{f:Q
 
 \begin{align}
   F = P \label{e:QSF_x} \\
-  N = mg + \phi \label{e:QSF_y} \\
-  P d \cos(\theta) + F(r - d \cos(\theta)) - N d \sin(\theta) - \phi (r - d \sin(\theta)) = 0 \label{e:QSF_o}
+  N = mg + B \label{e:QSF_y} \\
+  P d \cos(\theta) + F(r - d \cos(\theta)) - N d \sin(\theta) - B (r - d \sin(\theta)) = 0 \label{e:QSF_o}
 \end{align}
 
 We also assume the prone robot's shell is sliding along the compatriot robot's front at all times (no lip for catching and hinging, unlike the Kinematic Flip's design):
 
 \begin{align}
-  \phi = \mu P \label{e:QSF_plowFriction}
+  B = \mu P \label{e:QSF_plowFriction}
 \end{align}
 
 \subsection{Push Force Requisite}
 Manipulating Eq. \ref{e:QSF_o} and substituting (in order) Eqs. \ref{e:QSF_x}, \ref{e:QSF_y}, \ref{e:QSF_plowFriction}
 
 \begin{align}
-  0 &= P d \cos(\theta) + P(r - d \cos(\theta)) - N d \sin(\theta) - \phi (r - d \sin(\theta))
-  \\&= Pr - N d \sin(\theta) - \phi (r - d \sin(\theta))
-  \\&= Pr - (mg + \phi) d \sin(\theta) - \phi (r - d \sin(\theta))
-  \\&= Pr - mg d \sin(\theta) - \phi r
-  \\&= (P - \phi)r - mg d \sin(\theta)
+  0 &= P d \cos(\theta) + P(r - d \cos(\theta)) - N d \sin(\theta) - B (r - d \sin(\theta))
+  \\&= Pr - N d \sin(\theta) - B (r - d \sin(\theta))
+  \\&= Pr - (mg + B) d \sin(\theta) - B (r - d \sin(\theta))
+  \\&= Pr - mg d \sin(\theta) - B r
+  \\&= (P - B)r - mg d \sin(\theta)
   \\&= (1-\mu) P r - mg d \sin(\theta)
 \end{align}
 
@@ -831,7 +819,7 @@ We will see this larger energy requisite manifest as significantly slower pushin
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1.0\textwidth]{QSFlipStrip3.png}
-\caption{Frame sequence of RoACH team performing our cooperative righting maneuver on styrofoam}
+\caption{Frame sequence of RoACH team performing quasi-static cooperative righting maneuver on styrofoam}
 \end{figure}
 
 The VelociRoACH robot was equipped with a cylindrical shell and set to walk forwards for 2 seconds after being setup and aimed at another pronated VelociRoACH robot.
@@ -873,7 +861,7 @@ The successful design condition discussed above (with the 26/30 success rate) us
 When these strips were removed the bare plastic failed to grip the ground and 5/5 flip attempts failed.
 This manifested as 3/5 pushes failing due to the prone robot simply skittering away from the pusher, and 2/5 pushes failing after the prone robot twisted (in yaw) away from the push thereby deflecting the pusher off to the side.
 
-\subsection{Footrpint Alignment}
+\subsection{Footprint Alignment}
 In Section \ref{sec:Molds} we chose to narrow designs to prismatic extrusions of 2D shapes, asserting that secondary curvature was actually undesirable.
 That assertion was tested experimentally by varying the entry angle of the prismatic robots to assess alignability and was contrasted with the poor experimental alignment performance of ellipsoidal shells.
 
@@ -889,6 +877,9 @@ This observation also aligns with the design reasoning for why previous shell it
 The goal of ``terradynamic streaming'' is to create exterior hulls for the robot that will slip past obstacles upon collision.
 As attested to in this experiment, the ellipsoidal hull is excellent at deflecting away from obstacles.
 This selfsame characteristic becomes undesirable when we instead need the robot to transfer force to obstacles it engages.
+
+
+
 
 \chapter{Dynamic Flip Method}
 \begin{figure}[ht]
