@@ -810,6 +810,8 @@ So that the change in energy required for progression along rotation $\theta$ is
 
 This energy differential over position describes how much work must be performed, or how much force is required.
 It is plotted in Fig. \ref{fig:QSdEnergy}
+% TODO: tie into Hamiltonian (assume momentum p is so low that T is negligible). Work (energy change) is force over distance (positional state), so force is related to energy differential of state. Do the maths.
+% All change in overall energy must be caused by the non-conservative, exogenous pushing force. How much force/power is necessary? Try to minimize!
 
 Note that the maximum force for pushing a circle is non-decreasing and is maximum at $\theta = \pi/2$ (this will be confirmed again in the below force analysis).
 In contrast, the maximum force for pushing an ellipse is much larger and occurs in the middle of the pushing maneuver.
@@ -897,8 +899,25 @@ If friction can be relied upon, then the system collapses from three states to o
 The Hamiltonian for this dynamic system will be the same as that explored in Sec. \ref{sec:QS_HamAnalysis}:
 
 \begin{align}
-  H(p,\theta) = U(\theta) + T(p,\theta) =
+  H(p,\theta) = U(\theta) + T(p,\theta) = mg(c_\theta - d) \cos(\theta) + \frac{p^2}{2ml_\theta^2}
 \end{align}
+
+\begin{align}
+  l_\theta = \left(d - \frac{b^2}{c_theta}\right)^2 + \frac{a^4 \tan^2(\theta)}{c_\theta^2}
+\end{align}
+
+\begin{align}
+  c_\theta = \sqrt(a^2 \tan^2(\theta) + b^2)
+\end{align}
+
+resulting in differential equations of motion:
+
+\begin{align}
+  \dot{\theta} =  \frac{\partial H}{\partial p} = \frac{p}{ml_theta^2}
+  \dot{p} = - \frac{\partial H}{\partial \theta} = \frac{p^2}{2 m l_\theta^3} \frac{dl_\theta}{d\theta} - mg \frac{dc_\theta}{d\theta} \cos(\theta) + mg (c_\theta - d) \sin(\theta)
+\end{align}
+
+%TODO: splice in expressions for derivatives of l and c wrt theta
 
 However, the strength of this more dynamic flipping scheme (purely ballistic) is that it works even in absence of friction.
 Without the rolling constraint, our system maintains all three degrees of freedom.
@@ -908,7 +927,7 @@ The Hamiltonian problem becomes fairly simple:
   H(p,z) = U(z) + T(p) = m g h + \frac{1}{2 m} p^2
 \end{align}
 
-Indeed, we get discover a basic success condition by evaluating the Hamiltonian at the first three snapshots shown in Fig. \ref{fig:DynCartoon} (and assuming energy transfer is purely elastic and optimally transferred to rotational kinetic energy):
+Indeed, we discover a basic success condition by evaluating the Hamiltonian at the first three snapshots shown in Fig. \ref{fig:DynCartoon} (and assuming energy transfer is purely elastic and optimally transferred to rotational kinetic energy):
 
 \begin{align}
 H_0 = \frac{1}{2} m_1 v_1^2  \\
@@ -921,11 +940,24 @@ H_2 = m_2 g \sqrt{d^2+r^2} \\
 We need the initial velocity of the ballistic compatriot to be at least $\sqrt{g \sqrt{d^2+r^2}}$ to hope to crest the potential barrier.
 In reality we'll need the initial velocity to be greater than that to deal with leakages to translational kinetic energy (slippage) and inelastic loss of impact.
 
-\section{Experimental Results}
-No results
+\section{Experimental Results and Future Work}
+Although initial prototype tests have been promising (see Fig. \ref{fig:DynamicPromise}), the authors have not yet (as of writing) robustly tested the maneuver across substrates and initial conditions with proper experimental rigor.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.4\textwidth]{DynamicPromise1.png}
+  \includegraphics[width=0.4\textwidth]{DynamicPromise2.png}
+  \caption{\label{fig:DynamicFlipRealLife}Although initial dynamic tests are promising, dynamic maneuver has not been experimentally measured as of writing}
+\end{figure}
+
+Initial tests used a glass corridor to keep the highly dynamic VelociRoACH on target to collide ballistically with the pronated robot.
+Realistic experimentation that is faithful to application conditions should have the robot running freely.
+Until recently, methods for controlling the VelociRoACH's heading at speed were not available.
+Future work will be to use this new heading controller to test the dynamic righting maneuver's efficacy in domains where quasi-static righting fails (e.g. low friction domains).
 
 \chapter{Conclusion: Discussion and Future Work}
 To be written second to last.
+%TODO: Write the conclusion
 
 \section{Acknowledgements}
 Many thanks to Carlos Casarez for his indispensable advice on experimental design and analyses as well as general direction on where to take this project.
