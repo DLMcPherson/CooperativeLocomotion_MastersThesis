@@ -177,7 +177,6 @@ His framework builds a graph structure on stable configurations with transitions
 This method is effectively a Hamiltonian analysis between discrete states (we will pursue a Hamiltonian analysis of our methods as well, but with a continuum of states instead of discontinuous transitions).
 Unlike Kessens (and more like Domokos) we will doing away with added actuators and instead focusing on minimal righting strategies.
 Unlike both of them we will augment the actuation with outside help from team-mates.
-% TODO: Right about self-righting metrics
 
 \chapter{Hardware}
 
@@ -656,7 +655,7 @@ The maneuver only requires the compatriot robot to run into the prone robot; the
 
 This design is also inspired by domed turtle shells. Domokos et. al \cite{domokos2008geometry} studied how turtles' shell shapes allow them to right themselves when tipped over.
 
-\section{Newtonian Analysis}
+\section{Newtonian Analysis \label{sec:QS_NewtAnalysis}}
 The main breaking points for successful quasi-static flipping maneuvers are having the requisite pushing force capacity and sufficient traction between the prone robot's shell and the ground.
 To analyze these two variables a simple quasi-static force analysis is sufficient.
 
@@ -744,19 +743,32 @@ If the ground friction is insufficient the prone robot will only roll up to a cr
 At that point the friction constraint is exactly met, the prone robot will begin to slide, and any further pushing will only result in sliding instead of rolling.
 To avoid this failure mode, we add a Santoprene tire at both ends of the robot shell, thereby boosting shell-ground contact $h$ while leaving a section of the shell smooth for low friction shell-shell contacts $\mu$.
 
-\section{Hamiltonian Analysis \label{sec:QS_HamAnalysis}}
+\section{Lagrangian Analysis \label{sec:QS_HamAnalysis}}
 We have now proposed a new flipping strategy predicated on quasi-static forces; filling the quasi-static niche in Mason's taxonomy of manipulation \cite{MasonMORMBook}.
-With a Newtonian (or, as Mason would call quasi-static analysis, Aristotelian) analysis we have prescribed the conditions for a successful cooperative righting maneuver.
-In this section we analyze the performance of the flip in time, extending to a dynamic investigation.
-We will use a Hamiltonian formulation to model this constrained dynamic system (rolling without slip reduces the problem from three states to one state).
-Furthermore, we will use this energetic analysis to argue that the semi-circle is optimal for our problem.
+With a Newtonian (or, as Mason would call a quasi-static analysis, Aristotelian) analysis we have prescribed the conditions for a successful cooperative righting maneuver.
+With a Lagrangian analysis we will examine the energetic performance of the proposed shell geometry and discuss optimality of shell designs.
 
-The VelociRoACH platform is optimized for speed and robustness, not torque and stability (which would be what we need for stable pushing).
-Accordingly our shell design for this platform must aim to minimize the requisite maximum power transfer necessary (throughout the maneuver).
-This can be analyzed by the change in potential energy as the prone robot undergoes rotation.
-To this end, let us find the gravitational potential energy of a tilted robot at each angular configuration.
-We narrow our focus of shell shape design to the class of 3D shapes with elliptical cross sections in the plane of rotation.
-This focusing is motivated by analogy to the wheel and the intuition of avoiding corners.
+Continuing our quasi-static treatment of this shell design, we assume that momentum is negligible.
+This assumption allowed us to drop the $m \ddot{theta}$ term in our Newtonian analysis (Sec. \ref{sec:QS_NewtAnalysis}).
+Moving to a Lagrangian analysis, this selfsame assumption translates to neglecting the kinetic energy term $T(\theta,\dot{\theta})$, so that:
+
+$$
+L(\theta,\dot{\theta}) = T(\dot{\theta}) - U(\theta) = - U(\theta)
+$$
+
+With this assumption the generalizing Lagrangian equation of motion becomes:
+
+\begin{align}
+P &= \frac{d}{dt} \frac{\partial L}{\partial \dot{\theta}} - \frac{\partial L}{\partial \theta} \\
+  &= - \frac{\partial L}{\partial \theta} \\
+  &= \frac{d U}{d \theta} \label{eq:QS_LagrJust}
+\end{align}
+
+The exogenous, non-conservative pushing force required will equal the derivative of potential energy with respect to the generalized coordinate $\theta$.
+We aim to minimize this energy consumption, especially since the VelociRoACH platform was not optimized for torque production (instead being geared towards high velocities).
+
+We limit our shell design investigation to the space of ellipses under the intuition that shapes with pronounced corners will have unnecessarily high $\frac{\partial U}{\partial \theta}$ concentrated at that corner.
+Therefore, we consider the potential energy of a tilted ellipse in contact with the ground as shown in Fig. \ref{f:QS_energyGeometry}
 
 \begin{figure}[ht]
 \centering
@@ -768,7 +780,7 @@ Consider Fig. \ref{f:QS_energyGeometry} where $a,b$ are the ellipse's major and 
 The energy at a given tilt angle $\theta$ will be:
 
 \begin{align}
-  E(\theta) =
+  U(\theta) =
     \begin{cases}
       mg (c(\theta)-d) \cos(\theta), & \text{if}\ \theta < \frac{\pi}{2} \\
       mg (a \sin(\theta) - d \cos(\theta) ), & \text{if}\ \frac{\pi}{2} \leq \theta < \frac{\pi}{2} + \tan^{-1}(d/a)
@@ -787,20 +799,20 @@ where $c$ is the minor-axis intercept of the unique tangent line to the semi-ell
   \begin{subfigure}[t]{0.45\textwidth}
     \centering
     \includegraphics[width=1.0\textwidth]{EnergyLandscape.eps}
-    \caption{\label{fig:QSEnergy}Energy Landscape over Prone Robot's Angle as described in Eq. \ref{eq:QSEnergy}}
+    \caption{\label{fig:QSEnergy}Potential Energy Landscape over Prone Robot's Angle as described in Eq. \ref{eq:QSEnergy}}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{0.45\textwidth}
     \centering
     \includegraphics[width=1.0\textwidth]{dEnergyLandscape.eps}
-    \caption{\label{fig:QSdEnergy}Energy Differential plotted against Angle as described in Eq. \ref{eq:QSdEnergy}}
+    \caption{\label{fig:QSdEnergy}Requisite push force $P = \frac{d U}{d \theta}$ plotted against Angle as described in Eq. \ref{eq:QSdEnergy}}
   \end{subfigure}
 \end{figure}
 
 So that the change in energy required for progression along rotation $\theta$ is:
 
 \begin{align}
-  \frac{dE}{d\theta} =
+  \frac{d U}{d \theta} =
   \begin{cases}
     mg ( (a^2 - b^2) \frac{\sin(\theta)}{\sqrt{a^2 \tan^2(\theta) + b^2}} + d \sin(\theta) ), & \text{if}\ \theta < \frac{\pi}{2} \\
     mg (a \cos(\theta) + d \sin(\theta) ), & \text{if}\ \frac{\pi}{2} \leq \theta < \frac{\pi}{2} + \tan^{-1}(d/a)
@@ -808,16 +820,18 @@ So that the change in energy required for progression along rotation $\theta$ is
   \label{eq:QSdEnergy}
 \end{align}
 
-This energy differential over position describes how much work must be performed, or how much force is required.
-It is plotted in Fig. \ref{fig:QSdEnergy}
-% TODO: tie into Hamiltonian (assume momentum p is so low that T is negligible). Work (energy change) is force over distance (positional state), so force is related to energy differential of state. Do the maths.
-% All change in overall energy must be caused by the non-conservative, exogenous pushing force. How much force/power is necessary? Try to minimize!
+This energy differential over position describes how much work must be performed which is equivalent to requisite push force (shown in Eq. \ref{eq:QS_LagrJust}).
+Fig. \ref{fig:QSdEnergy} plots this energy differential for the circle and ellipse considered in the following experiments discussed in \ref{sec:QS_ExpResults}.
 
-Note that the maximum force for pushing a circle is non-decreasing and is maximum at $\theta = \pi/2$ (this will be confirmed again in the below force analysis).
+Note that the maximum force for pushing a circle is non-decreasing and is maximum at $\theta = \pi/2$ (as was already seen in the Newtonian analysis).
 In contrast, the maximum force for pushing an ellipse is much larger and occurs in the middle of the pushing maneuver.
 We will see this larger energy requisite manifest as significantly slower pushing maneuvers when operating on ellipses.
+Therefore, within the space of ellipses, the circle is optimal for minimizing peak pushing force.
+For force-limited robotic platforms like the VelociRoACH this is a crucial optimality metric.
+However, we also design the VelociRoACH to be compact, and adding a taller shell detracts from this strength.
+For application-ready robots we would have to balance these competing objectives resulting in a compromise ellipse that is squatter than the energetically-optimal circle.
 
-\section{Experimental Results}
+\section{Experimental Results \label{sec:QS_ExpResults}}
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1.0\textwidth]{QSFlipStrip3.png}
@@ -891,62 +905,128 @@ This selfsame characteristic becomes undesirable when we instead need the robot 
 \end{figure}
 The final flipping method eschews reliance upon friction by replacing it (in its role of invisible second finger) with the more ubiquitous inertial pseudo-force.
 This flipping method is purely ballistic, and by relying on dynamic effects fills the last niche in Mason's taxonomy of manipulation \cite{MasonMORMBook}.
-Indeed, the VelociRoACH platform is optimized for speed over pushing strength (as was required for the quasi-static flipping method), so this dynamic flipping method plays to its strengths.
-The design challenge will be in ensuring that the transferred kinetic energy from compatriot to pronate is stored as rotational kinetic energy instead of translational kinetic energy.
+Indeed, the VelociRoACH platform is optimized for speed over pushing strength (as was required for the quasi-static flipping method), so this dynamic flipping method plays to the robot's strengths.
 
 \section{Hamiltonian Analysis}
-If friction can be relied upon, then the system collapses from three states to one thanks to the rolling constraint.
-The Hamiltonian for this dynamic system will be the same as that explored in Sec. \ref{sec:QS_HamAnalysis}:
+This cooperative righting method leverages the highly ballistic performance of the VelociRoACH to energetically impact the pronated robot.
+Unlike the quasi-static analysis in the previous chapter, this method integrates and relies upon the inertial effects.
+Therefore, our energetic analysis will not neglect the kinetic energy term.
+We will assume throughout this analysis that the impact is perfectly elastic (no energy loss due to plastic deformation) and that all of the ballistic robot's energy is transferred to the pronated robot.
 
-\begin{align}
-  H(p,\theta) = U(\theta) + T(p,\theta) = mg(c_\theta - d) \cos(\theta) + \frac{p^2}{2ml_\theta^2}
-\end{align}
 
-\begin{align}
-  l_\theta = \left(d - \frac{b^2}{c_theta}\right)^2 + \frac{a^4 \tan^2(\theta)}{c_\theta^2}
-\end{align}
+If friction can be relied upon, then the system collapses from three states due to the rolling constraint.
+However, the true strength of this more dynamic flipping scheme (purely ballistic) is that it works even in absence of friction.
+We will analyze this more general condition first. Then we observe how friction and the rolling constraint enhances the flipping process.
 
-\begin{align}
-  c_\theta = \sqrt(a^2 \tan^2(\theta) + b^2)
-\end{align}
-
-resulting in differential equations of motion:
-
-\begin{align}
-  \dot{\theta} =  \frac{\partial H}{\partial p} = \frac{p}{ml_theta^2}
-  \dot{p} = - \frac{\partial H}{\partial \theta} = \frac{p^2}{2 m l_\theta^3} \frac{dl_\theta}{d\theta} - mg \frac{dc_\theta}{d\theta} \cos(\theta) + mg (c_\theta - d) \sin(\theta)
-\end{align}
-
-%TODO: splice in expressions for derivatives of l and c wrt theta
-
-However, the strength of this more dynamic flipping scheme (purely ballistic) is that it works even in absence of friction.
-Without the rolling constraint, our system maintains all three degrees of freedom.
-The Hamiltonian problem becomes fairly simple:
+\subsection{Frictionless System} %=========================
+Without the rolling constraint, our system maintains all three degrees of freedom (we analyze movement only within the plane).
+The Hamiltonian is:
 
 \begin{align}
   H(p,z) = U(z) + T(p) = m g h + \frac{1}{2 m} p^2
 \end{align}
 
-Indeed, we discover a basic success condition by evaluating the Hamiltonian at the first three snapshots shown in Fig. \ref{fig:DynCartoon} (and assuming energy transfer is purely elastic and optimally transferred to rotational kinetic energy):
+Indeed, we discover a basic success condition by evaluating the Hamiltonian at the first three snapshots shown in Fig. \ref{fig:DynFrames} (and assuming energy transfer is purely elastic and optimally transferred to rotational kinetic energy):
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Dyn_EnergyFrames.eps}
+  \caption{\label{fig:DynFrames}Energy Analysis Snapshots for (left to right): (0)immediately before impact, (1)immediately after impact, (2)peak height}
+\end{figure}
 
 \begin{align}
-H_0 = \frac{1}{2} m_1 v_1^2  \\
-H_1 = \frac{1}{2} I_2 \omega_2^2  \\
-H_2 = m_2 g \sqrt{d^2+r^2} \\
-\rightarrow v_1 &= \sqrt{\frac{m_2}{m_1}g \sqrt{d^2+r^2}} \\
- v_1 &= \sqrt{g \sqrt{d^2+r^2}}
+H_0 = \frac{1}{2} m_1 v_0^2  \\
+H_1 = \frac{1}{2} I_2 \omega_1^2  \\
+H_2 = m_2 g \sqrt{d^2+a^2} \\
+\rightarrow v_0 &= \sqrt{\frac{m_2}{m_1}g \sqrt{d^2+a^2}} \\
+ v_0 &= \sqrt{g \sqrt{d^2+a^2}}
 \end{align}
 
-We need the initial velocity of the ballistic compatriot to be at least $\sqrt{g \sqrt{d^2+r^2}}$ to hope to crest the potential barrier.
-In reality we'll need the initial velocity to be greater than that to deal with leakages to translational kinetic energy (slippage) and inelastic loss of impact.
+We need the initial velocity of the ballistic compatriot to be at least $\sqrt{g \sqrt{d^2+a^2}}$ to hope to crest the potential barrier.
+In reality, we'll need the initial velocity to be greater than that to deal with leakages to translational kinetic energy (slippage) and inelastic loss of impact.
+
+\subsection{Rolling System} %===============================
+Leakages to slippage are averted if friction is sufficient to ensure the pronated robot rolls without slipping.
+This constrained dynamical system is identical to that analyzed in Sec. \ref{sec:QS_HamAnalysis}, but not neglecting kinetic energy.
+
+\begin{align}
+  U(\theta) = mg(c_\theta - d)
+\end{align}
+
+\begin{align}
+  c_\theta = \sqrt{a^2 \tan^2(\theta) + b^2}
+\end{align}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Dyn_EnergyAnalysis.eps}
+  \caption{Rolling shell with lengths for assessing kinetic energy}
+\end{figure}
+
+In this dynamic analysis, we now need to assess the kinetic energy which is:
+
+\begin{align}
+  T(p,\theta) = \frac{p^2}{2ml_\theta^2}
+\end{align}
+
+Where $l_\theta$ is the distance to the center of gravity from the instantaneous center of rotation (the point in contact with the ground).
+The instantaneous center's location (in the ellipse's reference frame) is determined by solving for the point that solves both the equation of the ellipse $b^2 x^2 + a^2 y^2 = a^2 b^2$ and the equation of the line $y = \tan(\theta) x + c$.
+$x$ and $y$ are therefore solutions to a quadratic equation, and the expression for $c$ used in \ref{sec:QS_HamAnalysis} is found by realizing that the discriminant must be zero (otherwise the line intersects in two locations and is a secant not a tangent):
+This realization simplifies the expressions for $x_\theta$ and $y_\theta$ into:
+
+\begin{align}
+  x_\theta &= \frac{-a^2 \tan(\theta)}{c_\theta} = \frac{-a^2}{\sqrt{a^2 + b^2 \cot^2(\theta)}}\\
+  y_\theta &= \frac{b^2}{c_\theta}
+\end{align}
+
+With these lengths determined it is possible to extract the length $l$ from the law of cosines:
+
+\begin{align}
+  l_\theta &= d^2 + f_\theta^2 - 2 d f_\theta \cos(\psi) \\
+  &= d^2 + f_\theta^2 - 2 d y_\theta \\
+  &= d^2 + x_\theta^2 + y_\theta^2 - 2 d y_\theta \\
+  &= (d - y_\theta)^2 + x^2 \\
+  &= \left(d - \frac{b^2}{c_\theta}\right)^2 + \frac{a^4}{a^2 + b^2 \cot^2(\theta)}
+\end{align}
+
+The impact of the ballistic robot is assumed to be purely captured by the initial momentum, and no further forces are applied between the two robots after initial impact (as the pronated robot flies away).
+This removes all the non-conservative non-constraint forces from the system, allowing a variational formulation, moving us from Lagrangian analysis to Hamiltonian analysis:
+
+\begin{align}
+  H(p,\theta) = U(\theta) + T(p,\theta) = mg(c_\theta - d) \cos(\theta) + \frac{p^2}{2ml_\theta^2}
+\end{align}
+
+resulting in differential equations of motion:
+
+\begin{align}
+  \dot{\theta} &=  \frac{\partial H}{\partial p} = \frac{p}{ml_\theta^2} \\
+  \dot{p} &= - \frac{\partial H}{\partial \theta} = \frac{p^2}{2 m l_\theta^3} \frac{dl_\theta}{d\theta} - mg \frac{dc_\theta}{d\theta} \cos(\theta) + mg (c_\theta - d) \sin(\theta)
+\end{align}
+
+where:
+
+\begin{align}
+  \frac{d l_\theta}{d\theta} &= 2 \left(d - \frac{b^2}{c_\theta} \right) \frac{b^2}{c_\theta^2} \frac{d c_\theta}{d\theta} + 2a^4 b^2 \frac{\cot(\theta) \csc^2(\theta)}{(a^2 + b^2 \cot^2(\theta))^2} \\
+  \frac{d c_\theta}{d\theta} &= \frac{a^2 \tan(\theta) \sec^2(\theta)}{2 \sqrt{a^2 \tan^2(\theta) + b^2}}
+\end{align}
+
+Note that these derivatives simplify when $a = b = r$ (the shell is a circle) since:
+
+\begin{align}
+  c_\theta = & r \cos(\theta) \\
+  \rightarrow \frac{d c_\theta}{d\theta} &= -r \sin(\theta)\\
+  l_\theta = & \sqrt{d^2 + r^2 - 2 d r \cos(\theta)} \\
+  \rightarrow \frac{d l_\theta}{d\theta} &= \frac{d r \sin(\theta)}{ \sqrt{d^2 + r^2 - 2 d r \cos(\theta)} }
+\end{align}
+
+With the Hamiltonian fully defined and equations of motion derived, any quantity of interest for this constrained system can be analyzed to provide hypotheses for future experiments (described in the next section).
 
 \section{Experimental Results and Future Work}
-Although initial prototype tests have been promising (see Fig. \ref{fig:DynamicPromise}), the authors have not yet (as of writing) robustly tested the maneuver across substrates and initial conditions with proper experimental rigor.
+Although initial prototype tests have been promising (see Fig. \ref{fig:DynamicFlipRealLife}), the authors have not yet (as of writing) robustly tested the maneuver across substrates and initial conditions with proper experimental rigor.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.4\textwidth]{DynamicPromise1.png}
-  \includegraphics[width=0.4\textwidth]{DynamicPromise2.png}
+  \includegraphics[width=0.9\textwidth]{DynamicPromiseStrip.jpg}
   \caption{\label{fig:DynamicFlipRealLife}Although initial dynamic tests are promising, dynamic maneuver has not been experimentally measured as of writing}
 \end{figure}
 
@@ -956,8 +1036,7 @@ Until recently, methods for controlling the VelociRoACH's heading at speed were 
 Future work will be to use this new heading controller to test the dynamic righting maneuver's efficacy in domains where quasi-static righting fails (e.g. low friction domains).
 
 \chapter{Conclusion: Discussion and Future Work}
-To be written second to last.
-%TODO: Write the conclusion
+
 
 \section{Acknowledgements}
 Many thanks to Carlos Casarez for his indispensable advice on experimental design and analyses as well as general direction on where to take this project.

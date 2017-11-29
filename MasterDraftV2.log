@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  27 NOV 2017 15:53
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  28 NOV 2017 19:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2080,52 +2080,77 @@ File: QS_FreeBodyDiagram2.eps Graphic file (type eps)
 
 ] [19]
 [20]
-Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 763 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 776 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 776 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 776 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 776 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 776 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 776 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 776 replaced by U+FFFD.
 File: QS_EnergyAnalysis.eps Graphic file (type eps)
- <QS_EnergyAnalysis.eps>
+ <QS_EnergyAnalysis.eps> [21]
 File: EnergyLandscape.eps Graphic file (type eps)
  <EnergyLandscape.eps>
 File: dEnergyLandscape.eps Graphic file (type eps)
  <dEnergyLandscape.eps>
-[21]
 File: QSFlipStrip3.png Graphic file (type QTm)
- <use  "QSFlipStrip3.png" >
+
+<use  "QSFlipStrip3.png" >
 File: CircleIcon.png Graphic file (type QTm)
  <use  "CircleIcon.png" >
 File: EllipseIcon.png Graphic file (type QTm)
-
-<use  "EllipseIcon.png" >
+ <use  "EllipseIcon.png" >
 File: 0Align.png Graphic file (type QTm)
- <use  "0Align.png" >
+
+<use  "0Align.png" >
 File: 30Align.png Graphic file (type QTm)
  <use  "30Align.png" >
 File: 45Align.png Graphic file (type QTm)
-
-<use  "45Align.png" >
+ <use  "45Align.png" >
 File: 60Align.png Graphic file (type QTm)
- <use  "60Align.png" >
+
+<use  "60Align.png" >
 File: EllipEllipAlign.png Graphic file (type QTm)
  <use  "EllipEllipAlign.png" >
 File: CircleIcon.png Graphic file (type QTm)
-
-<use  "CircleIcon.png" >
+ <use  "CircleIcon.png" >
 File: BareCircleIcon.png Graphic file (type QTm)
- <use  "BareCircleIcon.png" > [22] [23]
+
+<use  "BareCircleIcon.png" > [22] [23] [24]
 Chapter 4.
 File: Dynamic_CoopCartoon.png Graphic file (type QTm)
-<use  "Dynamic_CoopCartoon.png" > [24
+<use  "Dynamic_CoopCartoon.png" > [25
 
-] [25]
+]
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+File: Dyn_EnergyFrames.eps Graphic file (type eps)
+ <Dyn_EnergyFrames.eps>
+Invalid UTF-8 byte or sequence at line 963 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 963 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 963 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 963 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 963 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 963 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 963 replaced by U+FFFD.
+File: Dyn_EnergyAnalysis.eps Graphic file (type eps)
+
+<Dyn_EnergyAnalysis.eps> [26] [27]
+File: DynamicPromiseStrip.jpg Graphic file (type QTm)
+ <use  "DynamicPromiseStrip.jpg" > [28]
+[29]
 Chapter 5.
-(./MasterDraftV2.bbl [26
+(./MasterDraftV2.bbl [30
 
-] [27
+] [31
 
 ]
 LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 128
@@ -2133,15 +2158,15 @@ LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 128
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/euenc/eu1lmtt.fd
 File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)) [28]
+)) [32]
 (./MasterDraftV2.aux) ) 
 Here is how much of TeX's memory you used:
- 27147 strings out of 493706
- 554827 string characters out of 6145769
- 583361 words of memory out of 5000000
- 30066 multiletter control sequences out of 15000+600000
+ 27158 strings out of 493706
+ 555053 string characters out of 6145769
+ 584361 words of memory out of 5000000
+ 30074 multiletter control sequences out of 15000+600000
  19032 words of font info for 88 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 62i,16n,92p,10380b,565s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,16n,92p,10380b,568s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on MasterDraftV2.pdf (30 pages).
+Output written on MasterDraftV2.pdf (34 pages).
