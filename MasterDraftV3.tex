@@ -74,7 +74,7 @@ And humanity has succeeded to some extent.
 Decentralized control strategies inspired by flocks of birds \cite{reynolds1987flocks} produce tight formation controls for our flying robots \cite{RealBoids}.
 This newfound capacity for formation control enabled cooperative manipulation of objects \cite{rus1995moving,sugar2002control,spletzer2001cooperative,song2002potential} just like ants \cite{kube2000cooperative}.
 We take this a step further by having teams manipulate a very special object: another team member.
-Inspired by self-assemblages \cite{Anderson2002} and intermediate-level parts \cite{Anderson2001} used by social insects, the team can add news modes of movement and controllable DoF for our robots.
+Inspired by self-assemblages \cite{Anderson2002} and intermediate-level parts \cite{Anderson2001} used by social insects, the team can add new modes of movement and controllable DoF for our robots.
 
 \begin{figure}[ht]
   \centering
@@ -93,11 +93,12 @@ Inspired by self-assemblages \cite{Anderson2002} and intermediate-level parts \c
 \end{figure}
 
 As we focus manipulation on manipulating team members, our goal is to translate work in cooperative manipulation to cooperative locomotion.
-The design freedom granted by specializing manipulation to other teammates allows us to create more rich manipulations than mere translations.
-By leveraging work in dynamic manipulation, we can design mobile robots that can rotate each other out of the plane of movement.
+This transition allows us to proscribe the shape of the manipulated object as well as that of the effector.
+This new design freedom allows us to create more rich manipulations than mere translations.
+By leveraging work in dynamic manipulation, we can design mobile robots that can rotate each other out of the plane of movement (an improvement over previous approaches like \cite{rus1995moving,sugar2002control}).
 
 \subsection{Structure of Thesis}
-This Thesis first exposits the rich tradition of research this work builds upon. This will take the rest of this chapter.
+This Thesis first exposits the rich tradition of research we build upon. This literature exposition inhabits the rest of this chapter.
 We then detail the hardware used in our experiments in Chapter 1 for the sake of reproducibility.
 The next three sections each investigate a different schema for cooperative righting.
 We follow the manipulation taxonomy expounded upon in Mason's seminal text ``Mechanics of Robotic Manipulation'' \cite{MasonMORMBook}: Kinematic, Static\footnote{Interestingly, static righting corresponds to passive self-righting by placing the center of gravity above the center of rotation. Static righting is non-cooperative and so doesn't receive a treatment here (static manipulation also did not receive its own chapter in ``Mechanics of Robotic Manipulation'' \cite{MasonMORMBook})}, Quasi-static, Dynamic.
@@ -165,7 +166,7 @@ Biomimetic approaches such as the TERMES \cite{werfel2014designing} construction
 \subsection{Self Righting}
 In this work we focus on the cooperative locomotion example of cooperative righting.
 Therefore, we should compare this work to alternative righting schemes that utilize an individual robot's spare degrees of freedom to effect a roll.
-For example, Chen et al. \cite{li2016cockroach} added special purpose biomimetic mechanisms for self-righting inspired by beetles' wings.
+For example, Li et al. \cite{li2016cockroach} added special purpose biomimetic mechanisms for self-righting inspired by beetles' wings.
 Similarly, Casarez and Fearing \cite{casarezTailRighting} demonstrate how adding an extra motorized tail can provide a self-righting behavior.
 Saranli et al. \cite{saranli2004model} use the actuators they already have to roll: by flailing the robot's legs they can induce a roll moment on the body.
 
@@ -196,8 +197,8 @@ We accomplish our cooperative locomotion through dynamic and dexterous manipulat
 These techniques rely upon molding the force vectors that are applied throughout by the manipulation contacts.
 These contact forces are governed by the shape and material of the outer hull of the robot.
 By adding shells to our robotic platform we can mold the reaction force landscape to suit our purposes.
-This was used in Chen \cite{ChenTerradynamic} to affect how environmental obstacles push on the robot while traversing cluttered terrain.
-Whereas Chen sought to use reaction forces to disengage from objects, we instead employ these forces to manipulate said objects.
+This was used in Li et. al \cite{ChenTerradynamic} to affect how environmental obstacles push on the robot while traversing cluttered terrain.
+Whereas Li sought to use reaction forces to disengage from objects, we instead employ these forces to manipulate said objects.
 Therefore, the crux of our work is designing the shell shapes for our robot.
 
 \begin{table}[tb]
@@ -279,7 +280,7 @@ We vacuum formed 0.015 inch thick polycarbonate to our mold using the Formech Co
 The mold was constructed out of standard corrugated cardboard from recycled shipping packages, measuring between 3 and 4 millimeters in thickness (varying by package).
 
 \subsection{An Aside on Auto-Alignment and Prismatic Shells: via Reuleaux's Method of Moment Labeling \label{sec:Reuleaux}}
-Besides for simplifying both the manufacturing process and mathematical analyses, prismatic shells grant one more elegant boon: yaw control for cooperation is built into the mechanics.
+Besides simplifying both the manufacturing process and mathematical analyses, prismatic shells grant one more elegant boon: yaw control for cooperation is built into the mechanics.
 A prismatic shell has a rectangular footprint projected onto the ground plane.
 This footprint will govern how the robot yaws when interacting with the environment.
 We find that a rectangular footprint drives the robot to align with objects (esp. other teammates) it engages with, resulting in stable pushes.
@@ -312,14 +313,13 @@ Leading into these grasps, too, the prismatic shells are more stable.
 If the two rectangles are rotationally offset upon first contact, only one corner of the pusher will touch the prone robot.
 Depending on which side of the center of friction (for quasi-static virtual finger)/center of mass (for dynamic virtual finger)/contact interval (for kinematic virtual finger) this initial touch point is on, the pusher is stably pulled into either a perfectly parallel or perpendicular configuration.
 In contrast, if the ellipsoidal shells are rotationally offset upon first contact, the pusher is deflected away from their compatriot and no (even unstable) grasp is achieved.
-This deflecting behavior was the original appeal of the ellipsoidal design in Chen's work \cite{ChenTerradynamic}, which refered to this effect as ``terradynamic streamlining".
+This deflecting behavior was the original appeal of the ellipsoidal design in Li et. al's work \cite{ChenTerradynamic}, which refered to this effect as ``terradynamic streamlining".
 In our application, however, we don't want to dodge the environment: we wish to grapple with it.
 Therefore, a prismatic shell design is the most judicious choice.
 
 \subsection{Standard Magnet Mount}
 Once the plastic shells are formed to the desired prismatic shape, they are mounted to the robot via modular magnetic mounts (this allows swapping shells between experimental conditions).
-The magnetic mount is a strip of poster-board strung across a horizontal secant in the shell with magnets interference fit into the top surface.
-glued to the lower $\pi/6$ radians of the semi-circle
+The magnetic mount is a strip of poster-board strung across a horizontal secant in the shell with magnets stuck in place by an interference fit.
 A poster-board strip is cut to length according to the formula:
 
 $$
@@ -398,14 +398,15 @@ The \textit{motion orbits}\footnote{\textit{motion orbits} are a central concept
  \begin{figure}[ht]
    \begin{subfigure}[t]{0.5\textwidth}
      \centering
-     \includegraphics[width=\linewidth,trim={10cm 5cm 0 5cm},clip]{ShapeForContact_hinge2.eps}
-     \caption{\label{fig:rotMot}Motion Orbits of Pronated Copy of Shell under Hinge Effector}
+     \includegraphics[width=\linewidth,trim={10cm 7cm 0 5cm},clip]{ShapeForContact_hinge2.eps}
+     \subcaption{\label{fig:rotMot}Motion Orbits of Hinge Effector}
    \end{subfigure}
    \begin{subfigure}[t]{0.5\textwidth}
      \centering
      \includegraphics[width=\linewidth]{ShapeForContact_jaw.eps}
-     \caption{\label{fig:transMot}Motion Orbits of Parallel Compatriot Copy of Shell under Squeeze Effector}
+     \subcaption{\label{fig:transMot}Motion Orbits of Squeeze Effector}
    \end{subfigure}
+   \caption{Motions Orbits of (a) Pronated Copy of Shell and (b) Parallel Compatriot Copy of Shell}
  \end{figure}
 
 The coupled problem investigates the relative motion of the parallel compatriot robot: a closing gap, mimicking parallel jaw grippers, that pushes the prone robot up and over.
@@ -709,7 +710,7 @@ With a Newtonian (or, as Mason would call a quasi-static analysis, Aristotelian)
 With a Lagrangian analysis we will examine the energetic performance of the proposed shell geometry and discuss optimality of shell designs.
 
 Continuing our quasi-static treatment of this shell design, we assume that momentum is negligible.
-This assumption allowed us to drop the $m \ddot{theta}$ term in our Newtonian analysis (Sec. \ref{sec:QS_NewtAnalysis}).
+This assumption allowed us to drop the $m \ddot{\theta}$ term in our Newtonian analysis (Sec. \ref{sec:QS_NewtAnalysis}).
 Moving to a Lagrangian analysis, this selfsame assumption translates to neglecting the kinetic energy term $T(\theta,\dot{\theta})$, so that:
 
 $$
@@ -874,9 +875,9 @@ Therefore, our energetic analysis will not neglect the kinetic energy term.
 We will assume throughout this analysis that the impact is perfectly elastic (no energy loss due to plastic deformation) and that all of the ballistic robot's energy is transferred to the pronated robot.
 
 
-If friction can be relied upon, then the system collapses from three states due to the rolling constraint.
+If friction can be relied upon, the rolling constraint collapses the degrees of freedom from three to one.
 However, the true strength of this more dynamic flipping scheme (purely ballistic) is that it works even in absence of friction.
-We will analyze this more general condition first. Then we observe how friction and the rolling constraint enhances the flipping process.
+We will analyze this more general condition first. After that, we will then observe how friction and the rolling constraint enhances the flipping process.
 
 \subsection{Frictionless System} %=========================
 Without the rolling constraint, our system maintains all three degrees of freedom (we analyze movement only within the plane).
@@ -891,26 +892,26 @@ Indeed, we discover a basic success condition by evaluating the Hamiltonian at t
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{Dyn_EnergyFrames.eps}
-  \caption{\label{fig:DynFrames}Energy Analysis Snapshots for (left to right): (0)immediately before impact, (1)immediately after impact, (2)peak height}
+  \caption{\label{fig:DynFrames}Energy Analysis Snapshots for (left to right): (0) immediately before impact, (1) immediately after impact, (2) at peak height}
 \end{figure}
 
 \begin{align}
 H_0 = \frac{1}{2} m_1 v_0^2  \\
 H_1 = \frac{1}{2} I_2 \omega_1^2  \\
 H_2 = m_2 g \sqrt{d^2+a^2} \\
-\rightarrow v_0 &= \sqrt{\frac{m_2}{m_1}g \sqrt{d^2+a^2}} \\
- v_0 &= \sqrt{g \sqrt{d^2+a^2}}
+\rightarrow v_0 &= \sqrt{2 \frac{m_2}{m_1}g \sqrt{d^2+a^2}} \\
+ v_0 &= \sqrt{2 g \sqrt{d^2+a^2}}
 \end{align}
 
-We need the initial velocity of the ballistic compatriot to be at least $\sqrt{g \sqrt{d^2+a^2}}$ to hope to crest the potential barrier.
-In reality, we'll need the initial velocity to be greater than that to deal with leakages to translational kinetic energy (slippage) and inelastic loss of impact.
+We need the initial velocity of the ballistic compatriot to be at least $\sqrt{2 g \sqrt{d^2+a^2}}$ to hope to crest the potential barrier.
+In reality, we'll need the initial velocity to be greater than that to deal with leakages to translational kinetic energy (slippage) and inelastic energy loss.
 
 \subsection{Rolling System} %===============================
 Leakages to slippage are averted if friction is sufficient to ensure the pronated robot rolls without slipping.
-This constrained dynamical system is identical to that analyzed in Sec. \ref{sec:QS_HamAnalysis}, but not neglecting kinetic energy.
+This constrained dynamical system is identical to that analyzed in Sec. \ref{sec:QS_HamAnalysis}, but this we don't neglect kinetic energy.
 
 \begin{align}
-  U(\theta) = mg(c_\theta - d)
+  U(\theta) = mg(c_\theta - d) \cos(\theta)
 \end{align}
 
 \begin{align}
@@ -929,9 +930,9 @@ In this dynamic analysis, we now need to assess the kinetic energy which is:
   T(p,\theta) = \frac{p^2}{2ml_\theta^2}
 \end{align}
 
-Where $l_\theta$ is the distance to the center of gravity from the instantaneous center of rotation (the point in contact with the ground).
-The instantaneous center's location (in the ellipse's reference frame) is determined by solving for the point that solves both the equation of the ellipse $b^2 x^2 + a^2 y^2 = a^2 b^2$ and the equation of the line $y = \tan(\theta) x + c$.
-$x$ and $y$ are therefore solutions to a quadratic equation, and the expression for $c$ used in \ref{sec:QS_HamAnalysis} is found by realizing that the discriminant must be zero (otherwise the line intersects in two locations and is a secant not a tangent):
+Where $p$ is the generalized momentum defined by $p = \frac{\partial L}{\partial \dot{\theta}}$, and $l_\theta$ is the distance to the center of gravity from the instantaneous center of rotation (the point in contact with the ground).
+This contact point's location (in the ellipse's reference frame) is determined by solving for the point that solves both the equation of the ellipse $b^2 x^2 + a^2 y^2 = a^2 b^2$ and the equation of the line $y = \tan(\theta) x + c$ (where we know that the ground's slope in the tilted ellipse's frame is $\tan(\theta)$).
+$x$ and $y$ are therefore solutions to a quadratic equation, and the expression for $c$ used in \ref{sec:QS_HamAnalysis} is found by realizing that the discriminant must be zero (otherwise the line intersects in two locations and is a secant not a tangent).
 This realization simplifies the expressions for $x_\theta$ and $y_\theta$ into:
 
 \begin{align}
